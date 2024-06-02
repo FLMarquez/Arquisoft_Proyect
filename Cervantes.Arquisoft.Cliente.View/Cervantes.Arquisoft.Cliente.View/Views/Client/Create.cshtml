@@ -1,0 +1,259 @@
+﻿@using Cervantes.Arquisoft.View.Models
+@model ClientViewModel
+
+@{
+    ViewData["Title"] = "Agregar un cliente";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Agregar un Cliente</h1>
+<h5>Registrar nuevo cliente</h5>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label asp-for="DocumentNumber" class="control-label">Documento Nacional</label>
+                <input asp-for="DocumentNumber" class="form-control" placeholder="Ingrese el dni" onchange="checkDocumentExistence()" />
+                <span asp-validation-for="DocumentNumber" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nombre del Cliente</label>
+                <input asp-for="Name" class="form-control" placeholder="Ingrese el nombre" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Lastname" class="control-label">Apellido del Cliente</label>
+                <input asp-for="Lastname" class="form-control" placeholder="Ingrese el apellido" />
+                <span asp-validation-for="Lastname" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Mail" class="control-label">Mail</label>
+                <input asp-for="Mail" class="form-control" placeholder="Ingrese el correo electrónico" />
+                <span asp-validation-for="Mail" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label">Teléfono</label>
+                <input asp-for="Telephone" class="form-control" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Ingrese el teléfono" />
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label asp-for="Address.AddressLine" class="control-label">Línea de Dirección</label>
+                <input asp-for="Address.AddressLine" class="form-control" placeholder="Ingrese la línea de dirección" />
+                <span asp-validation-for="Address.AddressLine" class="text-danger"></span>
+            </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                        <label asp-for="Address.Numbering" class="control-label">Número</label>
+                        <input asp-for="Address.Numbering" class="form-control" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Ingrese el número" />
+                        <span asp-validation-for="Address.Numbering" class="text-danger"></span>
+
+                        </div>
+                    <div class="col-md-4">
+                        <label asp-for="Address.Floor" class="control-label">Piso</label>
+                        <input asp-for="Address.Floor" class="form-control" placeholder="Ingrese el piso" />
+                        <span asp-validation-for="Address.Floor" class="text-danger"></span>
+
+                    </div>
+                        <div class="col-md-4">
+                        <label asp-for="Address.Department" class="control-label">Departamento</label>
+                        <input asp-for="Address.Department" class="form-control" placeholder="Ingrese el departamento" />
+                        <span asp-validation-for="Address.Department" class="text-danger"></span>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                        <label asp-for="Address.PostalCode" class="control-label">Código Postal</label>
+                        <input asp-for="Address.PostalCode" class="form-control" placeholder="Ingrese el código postal" />
+                        <span asp-validation-for="Address.PostalCode" class="text-danger"></span>
+
+
+                        </div>
+                        <div class="col-md-6">
+                        <label asp-for="Address.Neighborhood" class="control-label">Barrio</label>
+                        <input asp-for="Address.Neighborhood" class="form-control" placeholder="Ingrese el barrio" />
+                        <span asp-validation-for="Address.Neighborhood" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="Address.ProvinceList" class="control-label">Provincia</label>
+                        <select id="provinceSelect" asp-for="Address.ProvinceValue" class="form-control" onchange="filterLocalitiesByProvince()" onload="initializeLocalitySelect()">
+                            @if (Model.Address.ProvinceList != null)
+                            {
+                                foreach (var province in Model.Address.ProvinceList)
+                                {
+                                    <option value="@province.ProvinceId">@province.Description</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="">No provinces available</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Address.ProvinceList" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Address.LocalitiesList" class="control-label">Localidad</label>
+                        <select id="localitySelect" asp-for="Address.LocalityValue" class="form-control" disabled="@(Model.Address.ProvinceList == null || !Model.Address.ProvinceList.Any() || Model.Address.LocalitiesList == null)">
+                            @if (Model.Address.LocalitiesList != null)
+                            {
+                                foreach (var locality in Model.Address.LocalitiesList)
+                                {
+                                    <option value="@locality.LocalityId" data-province-id="@locality.ProvinceId">@locality.Description</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="">No localities available</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Address.LocalitiesList" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="form-group m-3">
+
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <a asp-action="List" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        function initializeLocalitySelect() {
+            var localitiesSelect = document.getElementById("localitySelect");
+            localitiesSelect.disabled = true;
+            localitiesSelect.value = ""; // Establece el valor seleccionado a vacío
+        }
+
+        function filterLocalitiesByProvince() {
+            var selectedProvinceId = document.getElementById("provinceSelect").value;
+            var localitiesSelect = document.getElementById("localitySelect");
+            var localities = localitiesSelect.getElementsByTagName("option");
+
+            if (selectedProvinceId === "") {
+                localitiesSelect.disabled = true;
+                localitiesSelect.selectedIndex = -1; // Restablece el valor seleccionado a la opción por defecto
+            } else {
+                localitiesSelect.disabled = false;
+                localitiesSelect.selectedIndex = -1; // Deselecciona la localidad al seleccionar una provincia
+            }
+
+            for (var i = 0; i < localities.length; i++) {
+                var provinceId = localities[i].getAttribute("data-province-id");
+
+                if (provinceId === selectedProvinceId || selectedProvinceId === "") {
+                    localities[i].style.display = "block";
+                } else {
+                    localities[i].style.display = "none";
+                }
+            }
+        }
+
+        // Validación del lado del cliente antes de enviar el formulario
+        document.getElementById("submitBtn").addEventListener("click", function (event) {
+            var selectedProvinceId = document.getElementById("provinceSelect").value;
+            var selectedLocalityId = document.getElementById("localitySelect").value;
+
+            if (selectedProvinceId === "" || selectedLocalityId === "") {
+                event.preventDefault(); // Evitar el envío del formulario si hay campos vacíos
+                alert("Por favor, seleccione una provincia y una localidad.");
+            }
+        });
+
+        // Llamada inicial a la función de inicialización del select de localidades
+        initializeLocalitySelect();
+
+
+
+
+    </script>
+
+    <script>
+        // Función para desactivar o habilitar los campos de entrada
+        function toggleInputFields(disabled) {
+            var inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], select');
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].id !== "DocumentNumber") { // Excluir el campo de entrada del DNI
+                    inputs[i].disabled = disabled;
+                }
+            }
+            console.log('Campos de entrada desactivados:', disabled);
+        }
+
+        // Función para manejar la respuesta de la verificación de existencia del documento
+        function handleExistenceCheckResponse(response) {
+            console.log('Respuesta de verificación de existencia del documento:', response);
+            if (response === true) {
+                toggleInputFields(false); // Habilitar los campos de entrada
+            } else {
+                toggleInputFields(true); // Desactivar los campos de entrada
+            }
+        }
+
+        // Función para verificar la existencia del documento
+        function checkDocumentExistence() {
+            var documentNumber = document.getElementById("DocumentNumber").value;
+            console.log('Número de documento:', documentNumber);
+            if (documentNumber === "0") {
+                toggleInputFields(true); // Desactivar los campos de entrada si el valor es 0
+            } else {
+                fetch(`/Client/AlreadyExistCheck?documentNumber=${documentNumber}`)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        handleExistenceCheckResponse(data);
+                    })
+                    .catch(function (error) {
+                        console.error('Error al realizar la verificación de existencia del documento:', error);
+                    });
+            }
+        }
+
+        // Llamada inicial a la función de verificación de existencia del documento
+        checkDocumentExistence();
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+}

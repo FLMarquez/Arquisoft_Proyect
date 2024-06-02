@@ -1,0 +1,54 @@
+﻿@using Cervantes.Arquisoft.View.Models
+@model PaymentViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Editar Pago: @Model.PaymentId</h1>
+<h5>Esta función, permite gestionar cobros</h5>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Edit">
+
+    <input type="hidden" asp-for="PaymentId" />
+
+    <div class="mb-3">
+        <label for="IdPayment" class="form-label">Nº Pago</label>
+        <input type="text" class="form-control" asp-for="PaymentId" placeholder="PaymentIdo">
+        <span asp-validation-for="PaymentId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PaymentDate" class="control-label">Fecha Pago</label>
+        <input asp-for="PaymentDate" class="form-control" type="date" style="height: 80px; resize: vertical; overflow-y: auto;" placeholder="Ingrese Fecha de Pago" />
+        <span asp-validation-for="PaymentDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PaymentMethodId" class="control-label">Medio de Pago</label>
+        <input asp-for="PaymentMethodId" class="form-control" style="height: 80px; resize: vertical; overflow-y: auto;" placeholder="PaymentMethodId" />
+        <span asp-validation-for="PaymentMethodId" class="text-danger"></span>
+    </div>
+
+
+            <div class="form-group">
+        <label asp-for="Amount" class="control-label">Monto Pagado</label>
+        <input asp-for="Amount" class="form-control" style="height: 80px; resize: vertical; overflow-y: auto;" placeholder="Amount" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+
+
+              <div class="form-group">
+        <label asp-for="ProjectBudget" class="control-label">Saldo</label>
+        <input asp-for="ProjectBudget" class="form-control" style="height: 80px; resize: vertical; overflow-y: auto;" placeholder="Saldo" />
+        <span asp-validation-for="ProjectBudget" class="text-danger"></span>
+            </div>
+
+   
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+

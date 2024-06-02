@@ -1,0 +1,39 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+ 
+@model Cervantes.Arquisoft.View.Models.AssignmentTypeViewModel
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<p>Servicio: @Model.ServiceTypeName </p>
+<h1>Editar tarea: @Model.AssignmentTypeName </h1>
+<h5>Editar informacion de las tareas</h5>
+@*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="AssignmentTypeId" />
+    <input type="hidden" asp-for="Order" />
+    <input type="hidden" asp-for="ServiceTypeId" />
+
+    <div class="m-3">
+        <label for="AssignmentTypeName" class="form-label">Nombre de la tarea</label>
+        <input type="text" class="form-control" asp-for="AssignmentTypeName" id="AssignmentTypeName" placeholder="Tipo de Tarea">
+        <span asp-validation-for="AssignmentTypeName" class="text-danger"></span>
+    </div>
+
+    <div class="m-3">
+        <label for="AssignmentTypeDescription" class="form-label">Descripción</label>
+        <textarea asp-for="AssignmentTypeDescription" class="form-control" id="AssignmentTypeDescription" style="resize: vertical; overflow-y: auto;" placeholder="Descripción del Tipo de Tarea"></textarea>
+        <span asp-validation-for="AssignmentTypeDescription" class="text-danger"></span>
+    </div>
+
+    <div class="m-3">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <a class="btn btn-secondary" asp-action="Index" asp-controller="AssignmentType" asp-route-id="@Model.ServiceTypeId">Cancelar</a>
+    </div>
+</form>
+
+

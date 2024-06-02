@@ -1,0 +1,23 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+
+@model ProjectTypeViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+@if (Model != null && !string.IsNullOrEmpty(Model.ProjectTypeName))
+{
+    <h3 class="mb-3">¿Está seguro que desea borrar el tipo @Model.ProjectTypeName?</h3>
+}
+else
+{
+    <h3 class="mb-3">¿Está seguro que desea borrar el tipo?</h3>
+}
+
+
+<form asp-action="DeleteId" method="post">
+    <input type="hidden" asp-for="ProjectTypeId" />
+    <button type="submit" class="btn btn-danger">Borrar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>

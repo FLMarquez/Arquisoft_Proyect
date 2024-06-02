@@ -1,0 +1,162 @@
+﻿@using Cervantes.Arquisoft.View.Models
+@model IEnumerable<ClientViewModel>
+
+@{
+    ViewData["Title"] = "Listado de Clientes";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Listado de Clientes</h1>
+<h5>Administra la información de los clientes registrados en el sistema.</h5>
+
+<div class="input-group mb-3">
+    <a asp-action="Create" class="btn btn-primary mb-3"><i class="bi bi-person-plus"></i> Crear Cliente </a>
+    @*<input type="text" class="form-control smaller-input" name="searcher" id="searcher" placeholder="Buscar..."></input>*@
+
+
+</div>
+<small class="text-muted">Ordenados alfabeticamente por apellido y nombre</small>
+<table id="myTable"  class="table">
+    <thead>
+    <tr>
+        <th>Apellido</th>
+        <th>Nombre</th>
+        <th>DNI</th>
+        <th>Teléfono</th>
+        <th>Mail</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var client in Model)
+    {
+        <tr>
+                <td class="searchableItem">
+                    @client.Lastname
+                </td>
+            <td class="searchableItem">
+                @client.Name
+            </td>
+                
+            <td>
+                @client.DocumentNumber
+            </td>
+            <td>
+                @client.Telephone
+            </td>
+            <td class="searchableItem">
+                @client.Mail
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a asp-action="Edit" asp-route-id="@client.Id" class="btn btn-primary"><i class="bi bi-pencil-fill"> </i> Editar </a>
+                    <a asp-action="Delete" asp-route-id="@client.Id" class="btn btn-danger"><i class="bi bi-trash"> </i> Eliminar </a>
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json"></script>
+    <script>
+        document.addEventListener("keyup", e => {
+            if (e.target.matches("#searcher")) {
+                const searchTerm = e.target.value.toLowerCase();
+                document.querySelectorAll(".searchableItem").forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    const row = item.closest("tr"); // Encuentra la fila que contiene el elemento searchableItem
+                    if (text.includes(searchTerm)) {
+                        row.style.display = ""; // Muestra la fila
+                    } else {
+                        row.style.display = "none"; // Oculta la fila
+                    }
+                });
+            }
+        });
+
+    </script>
+    <script>
+        let table = $('#myTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            "columnDefs": [
+                { "orderable": false, "targets": 5 } // Deshabilita la ordenación para la primera columna (índice 0)
+            ]
+        });
+
+    </script>
+      <script>
+        // Función para actualizar la tabla con nuevos datos
+        function actualizarTabla() {
+            let table = $('#myTable').DataTable({
+                destroy: true, // Destruir la instancia anterior de DataTable
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+                },
+                "columnDefs": [
+                    { "orderable": false, "targets": 5 } // Deshabilita la ordenación para la primera columna (índice 0)
+                ]
+            });
+
+            // Limpiar la tabla antes de volver a cargar los datos
+            table.clear();
+
+            // Agregar los nuevos datos a la tabla
+            @foreach (var client in Model)
+            {
+                <tr>
+                    <td class="searchableItem">
+                        @client.Lastname
+                    </td>
+                    <td class="searchableItem">
+                        @client.Name
+                    </td>
+                    <td>
+                        @client.DocumentNumber
+                    </td>
+                    <td>
+                        @client.Telephone
+                    </td>
+                    <td class="searchableItem">
+                        @client.Mail
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-action="Edit" asp-route-id="@client.Id" class="btn btn-primary"><i class="bi bi-pencil-fill"> </i> Editar </a>
+                            <a asp-action="Delete" asp-route-id="@client.Id" class="btn btn-danger"><i class="bi bi-trash"> </i> Eliminar </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            
+            // Dibujar la tabla con los nuevos datos
+            table.draw();
+        }
+
+        // Llamar a la función actualizarTabla cuando el documento esté listo
+        $(document).ready(function() {
+            actualizarTabla();
+        });
+
+        // Función para manejar el evento de tecla
+        document.addEventListener("keyup", e => {
+            if (e.target.matches("#searcher")) {
+                const searchTerm = e.target.value.toLowerCase();
+                document.querySelectorAll(".searchableItem").forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    const row = item.closest("tr"); // Encuentra la fila que contiene el elemento searchableItem
+                    if (text.includes(searchTerm)) {
+                        row.style.display = ""; // Muestra la fila
+                    } else {
+                        row.style.display = "none"; // Oculta la fila
+                    }
+                });
+            }
+        });
+    </script>
+}

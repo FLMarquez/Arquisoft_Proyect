@@ -1,0 +1,295 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Cervantes.Arquisoft.View
+build_property.RootNamespace = Cervantes.Arquisoft.View
+build_property.ProjectDir = C:\Users\Lmarquez\Source\Repos\FLMarquez\Arquisoft\Cervantes.Arquisoft.Cliente.View\Cervantes.Arquisoft.Cliente.View\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Lmarquez\Source\Repos\FLMarquez\Arquisoft\Cervantes.Arquisoft.Cliente.View\Cervantes.Arquisoft.Cliente.View
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/AssignmentType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFR5cGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/AssignmentType/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFR5cGVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/AssignmentType/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFR5cGVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/AssignmentType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/AssignmentType/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFR5cGVcTm90Rm91bmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Assignment/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Assignment/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Assignment/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Assignment/Graph.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFxHcmFwaC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Assignment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Assignment/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudFxOb3RGb3VuZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Budget/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVkZ2V0XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Budget/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVkZ2V0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Client/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Client/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Client/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Client/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Client/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Client/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XE5vdEZvdW5kLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/History/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yeVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/History/Person.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yeVxQZXJzb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/LoginClient/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5DbGllbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/LoginClient/RecoverPass.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5DbGllbnRcUmVjb3ZlclBhc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/LoginUser/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5Vc2VyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/LoginUser/RecoverPass.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5Vc2VyXFJlY292ZXJQYXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Messaging/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzc2FnaW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Messaging/Message.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzc2FnaW5nXE1lc3NhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Payment/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Payment/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Payment/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Payment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Payment/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxOb3RGb3VuZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/ProjectType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFR5cGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/ProjectType/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFR5cGVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/ProjectType/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFR5cGVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/ProjectType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/ProjectType/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFR5cGVcTm90Rm91bmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Project/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Project/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Project/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Project/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Project/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxOb3RGb3VuZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Reports/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/ServiceType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVR5cGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/ServiceType/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVR5cGVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/ServiceType/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVR5cGVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/ServiceType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/ServiceType/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVR5cGVcTm90Rm91bmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Shared/Partials/Assignment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxzXEFzc2lnbm1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Shared/Partials/_NavbarClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxzXF9OYXZiYXJDbGllbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Shared/Partials/_NavbarUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxzXF9OYXZiYXJVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Shared/_AttachmentModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BdHRhY2htZW50TW9kYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Shared/_Gantt.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HYW50dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Shared/_Pert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QZXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Shared/_Table.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/User/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/User/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/User/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/User/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxOb3RGb3VuZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/User/RoleChange.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSb2xlQ2hhbmdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lmarquez/Source/Repos/FLMarquez/Arquisoft/Cervantes.Arquisoft.Cliente.View/Cervantes.Arquisoft.Cliente.View/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-v7qblts1x2

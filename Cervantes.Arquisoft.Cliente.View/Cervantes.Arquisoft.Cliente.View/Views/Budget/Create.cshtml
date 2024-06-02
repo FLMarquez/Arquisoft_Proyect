@@ -1,0 +1,90 @@
+﻿@*@using Cervantes.Arquisoft.View.Models
+@model ProjectViewModel
+
+@{
+    ViewData["Title"] = "Crear Presupuesto";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Crear Presupuesto para Clientes</h1>
+<h5>Aqui podra crear los presupuestos destinados a sus clientes</h5>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label">Proyectos</label>
+                <select asp-for="ProjectId" class="form-control">
+                    <option value="">Seleccione un proyecto</option>
+                    @foreach (var proyect in Model.ProjectList)
+                    {
+                        <option value="@proyect.ProjectId">@proyect.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="ClientId" class="control-label">Clientes</label>
+                <select asp-for="ClientId" class="form-control">
+                    <option value="">Seleccione un cliente</option>
+                    @foreach (var client in Model.ClientsList)
+                    {
+                        <option value="@client.ClientId">@client.Name, @client.LastName</option>
+                    }
+                </select>
+                <span asp-validation-for="ClientId" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="ServiceTypeId" class="control-label">Servicio seleccionado</label>
+                <select asp-for="ServiceTypeId" class="form-control">
+                    <option value="">Seleccione el servicio</option>
+                    @foreach (var projectType in Model.ServiceTypeList)
+                    {
+                        <option value="@projectType.ServiceTypeId">@projectType.ServiceTypeName</option>
+                    }
+                </select>
+                <span asp-validation-for="ProjectTypeId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProjectTypeId" class="control-label">Tipologia de Proyecto</label>
+                <select asp-for="ProjectTypeId" class="form-control">
+                    <option value="">Seleccione una tipologia de proyecto</option>
+                    @foreach (var projectType in Model.ProjectTypesList)
+                    {
+                        <option value="@projectType.ServiceTypeId">@projectType.ServiceTypeName</option>
+                    }
+                </select>
+                <span asp-validation-for="ProjectTypeId" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label">Arquitecto del Proyecto</label>
+                <input asp-for="UserId" type="hidden" value="1" />
+                 <div>
+                @Model.usersList.ElementAt(0).Name , @Model.usersList.ElementAt(0).LastName
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProjectStateId" class="control-label">Estado del Proyecto</label>
+                <input asp-for="ProjectStateId" type="hidden" value="1" />
+                <div>
+                @Model.projectStatesList.ElementAt(0).ProjectStateId
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group m-3">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+    </div>
+</form>
+*@

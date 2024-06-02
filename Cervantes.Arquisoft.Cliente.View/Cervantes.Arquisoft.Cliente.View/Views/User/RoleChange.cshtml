@@ -1,0 +1,29 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@model CreateUserViewModel
+
+
+@{
+    ViewData["Title"] = "Role";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>¿Desea cambiar el rol de: @Model.LastName, @Model.Name ?</h1>
+<h5>Cambiar el rol de usuario</h5>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-controller="User" asp-action="RoleChange2">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="UserRoleId" class="control-label">Rol del Usuario</label>
+        <select asp-for="UserRoleId" asp-items="Model.UserRoleList.Where(x => x.Value != 1.ToString())" class="form-control"></select>
+        <span asp-validation-for="UserRoleId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cambiar</button>
+    <a asp-action="List" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+}

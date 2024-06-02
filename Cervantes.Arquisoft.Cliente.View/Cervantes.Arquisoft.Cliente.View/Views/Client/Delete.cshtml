@@ -1,0 +1,15 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+
+@model ClientViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h3 class="mb-3">¿Está seguro que desea borrar al cliente @Model.Lastname, @Model.Name? </h3>
+
+<form asp-action="DeleteId">
+    <input type="hidden" asp-for="Id"/>
+    <button type="submit" class="btn btn-primary">Borrar</button>
+    <a asp-action="List" class="btn btn-secondary">Cancelar</a>
+</form>

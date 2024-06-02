@@ -1,0 +1,14 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+
+@model PaymentViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h3 class="mb-3">¿Está seguro que desea borrar el pago @Model.PaymentId </h3>
+<form asp-action="DeleteId">
+    <input type="hidden" asp-for="PaymentId" />
+    <button type="submit" class="btn btn-danger">Borrar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>

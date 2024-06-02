@@ -1,0 +1,73 @@
+﻿@using Cervantes.Arquisoft.View.Models
+@model PaymentViewModel
+
+@{
+    ViewData["Title"] = "Agregar Cobro";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Agregar Cobro</h1>
+<h5>Agregar un nuevo cobro al Proyecto: <span class="fw-bold">@Model.ProjectName</span></h5>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Create" method="post">
+    <div class="row">
+        <div class="col-md-6">
+
+                         
+                <input type="hidden" asp-for="ProjectId"  />
+                <input type="hidden" asp-for="PaymentId"  />
+            
+                <div class="row">
+                <div class="col-3 form-group">
+                    <label asp-for="@Model.PaymentId" class="control-label">Nº Cobro:</label>
+                    <input asp-for="@Model.PaymentId" class="form-control" disabled />
+                </div>
+                <div class="col-3">
+                    <label class="control-label">Fecha de cobro:</label>
+                <input asp-for="PaymentDate" class="form-control" disabled type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                </div>
+                </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Monto</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input asp-for="Amount" class="form-control text-right" placeholder="0.00" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="PaymentMethodList" class="control-label">Método de Pago</label>
+                <select asp-for="PaymentMethodValue" class="form-control">
+                    <option value="">Seleccione un método de pago</option>
+
+                    @foreach (var method in Model.PaymentMethodList)
+                        {
+                    <option value="@method.PaymentMethodId">@method.MethodName</option>
+                        }
+                    
+                </select>
+                <span asp-validation-for="PaymentMethodList" class="text-danger"></span>
+            </div>
+
+            
+
+
+        </div>
+        <div class="form-group m-3">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <a class="btn btn-secondary" asp-action="Index" asp-controller="Payment" asp-route-id="@Model.ProjectId">Cancelar</a>
+            
+
+        </div>
+</form>
+
+
+

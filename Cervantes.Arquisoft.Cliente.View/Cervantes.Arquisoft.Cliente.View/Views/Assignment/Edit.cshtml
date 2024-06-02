@@ -1,0 +1,620 @@
+﻿@model Cervantes.Arquisoft.View.Models.AssignmentViewModel
+
+@{
+    ViewData["Title"] = "Assignment";
+}
+
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+
+@*  //@Html.Partial("~/Views/Shared/Error.cshtml")
+
+ *@
+<style>
+    .fixed-width-btn {
+        width: 200px; /* Puedes ajustar el valor según tus necesidades */
+
+    }
+</style>
+<h1>Tareas</h1>
+<h5>Permite gestionar notas, adjuntos y compromisos</h5>
+
+<div class="container mb-2">
+    <form method="post" asp-action="Edit" asp-controller="Assignment">
+        <div class="btn-group">
+
+            <a asp-action="Index" asp-controller="Assignment" asp-route-id="@Model.ProjectId" class="btn btn-primary"> <i class="bi bi-box-arrow-in-left"></i> Volver a Tareas</a>
+
+
+
+            @if (Model.IsCompleted)
+            {
+                <button class="btn btn-warning fixed-width-btn url=Assignment_ToggleComplete_@Model.AssignmentId action=post state=@Model.IsCompleted" data-model='@Json.Serialize(@Model)' onclick="performAction(this)">Cancelar completar</button>
+            }
+            else
+            {
+                <button class="btn btn-info fixed-width-btn url=Assignment_ToggleComplete_@Model.AssignmentId action=post state=@Model.IsCompleted" data-model='@Json.Serialize(@Model)' onclick="performAction(this)">Completar</button>
+            }
+
+            @if (Model.IsSkipped)
+            {
+                <button class="btn btn-warning fixed-width-btn url=Assignment_ToggleSkipped_@Model.AssignmentId action=post state=@Model.IsSkipped" data-model='@Json.Serialize(@Model)' onclick="performAction(this)">Cancelar omitir</button>
+            }
+            else
+            {
+                <button class="btn btn-info fixed-width-btn url=Assignment_ToggleSkipped_@Model.AssignmentId action=post state=@Model.IsSkipped" data-model='@Json.Serialize(@Model)' onclick="performAction(this)">Omitir</button>
+            }
+
+            @if (Model.NotVisible)
+            {
+                <button class="btn btn-warning fixed-width-btn url=Assignment_ToggleVisible_@Model.AssignmentId action=post state=@Model.NotVisible" data-model='@Json.Serialize(@Model)' onclick="performAction(this)">Hacer Visible</button>
+            }
+            else
+            {
+                <button class="btn btn-info fixed-width-btn url=Assignment_ToggleVisible_@Model.AssignmentId action=post state=@Model.NotVisible" data-model='@Json.Serialize(@Model)' onclick="performAction(this)">Ocultar</button>
+            }
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Nuevo item
+            </button>
+
+        </div>
+
+
+
+
+    </form>
+</div>
+
+
+<div class="container border rounded">
+    <form method="post" asp-action="Edit" asp-controller="Assignment">
+        <input type="hidden" asp-for="@Model.AssignmentId" />
+        <input type="hidden" asp-for="@Model.AssignmentTypeId" />
+        <input type="hidden" asp-for="@Model.ProjectId" />
+        <input type="hidden" asp-for="@Model.IsStarted" />
+
+        <div class="row border rounded m-2 p-2 bg-light">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="AssignmentName" class="form-label m-1">Titulo:</label>
+                    </div>
+                    <div class="col-10">
+                        <input asp-for="AssignmentName" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="AssignmentDescription" class="form-label m-1">Descripción:</label>
+                    </div>
+                    <div class="col-10">
+                        <input asp-for="AssignmentDescription" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+
+        <div class="row border rounded m-2 p-2 bg-light">
+            <h5>Listado</h5>
+            <div class="row">
+                <div class="col-6">
+                    @if(Model.OriginalDueDate.HasValue)
+                    {
+                    <label for="OriginalCommitment" class="form-label">Compromiso Inicial: </label><small class="text-muted"><span>  </span>@Model.OriginalDueDate.Value.ToString("dd-MM-yyyy")</small> 
+                    }
+                    
+                </div>
+                <div class="col-6">
+                    @if (Model.LastDueDate.HasValue)
+                    {
+                    <label for="LastCommitment" class="form-label">Compromiso Actual:</label>       <small class="text-muted"><span>  </span>@Model.LastDueDate.Value.ToString("dd-MM-yyyy")</small>
+                    }
+                </div>
+            </div>
+
+            <div class="container m-1" style="min-height: 550px;">
+                <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="commitment-tab" data-toggle="tab" href="#commitment" role="tab" aria-controls="commitment" aria-selected="true">Compromiso</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="attachment-tab" data-toggle="tab" href="#attachment" role="tab" aria-controls="attachment" aria-selected="false">Adjunto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="false">Compromiso y Adjunto</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="commitment" role="tabpanel" aria-labelledby="commitment-tab">
+                        @Html.Partial("~/Views/Shared/_Table.cshtml", Model.HubList.Where(x => x.IsCommitment == true).ToList())
+
+                    </div>
+                    <div class="tab-pane fade" id="attachment" role="tabpanel" aria-labelledby="attachment-tab">
+                        @Html.Partial("~/Views/Shared/_Table.cshtml", Model.HubList.Where(x => x.IsAttachment == true).ToList())
+                    </div>
+                    <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
+                        @Html.Partial("~/Views/Shared/_Table.cshtml", Model.HubList.ToList())
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!-- Modal Compromisos -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar Item</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <select id="itemSelect" class="form-select mb-3">
+                                <option value="">Seleccione una opción</option>
+                                <option value="1">Compromiso</option>
+                                <option value="2">Adjunto</option>
+                                <option value="3">Compromiso y Adjunto</option>
+                            </select>
+
+                            <!-- Div y inputs para Compromiso -->
+                            <div id="compromisoDiv" style="display: none;">
+                                <div class="mb-3">
+                                    <h5 class="mb-3">Compromiso</h5>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="NewHub.DueDate" class="form-label">Fecha</label>
+                                    <input asp-for="NewHub.DueDate" class="form-control" type="date" />
+                                    <span asp-validation-for="NewHub.DueDate" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="NewHub.Note" class="form-label">Nota</label>
+                                    <input asp-for="NewHub.Note" class="form-control" type="text" />
+                                    <span asp-validation-for="NewHub.Note" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Div y inputs para Adjunto -->
+                            <div id="adjuntoDiv" style="display: none;">
+                                <h5 class="mb-3">Adjunto</h5>
+
+                                <div class="mb-3">
+                                    <label asp-for="NewHub.FileName" class="form-label">Nombre de Archivo</label>
+                                    <input asp-for="NewHub.FileName" class="form-control" type="text" />
+                                    <span asp-validation-for="NewHub.FileName" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="NewHub.FileDescription" class="form-label">Descripción</label>
+                                    <input asp-for="NewHub.FileDescription" class="form-control" type="text" />
+                                    <span asp-validation-for="NewHub.FileDescription" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fileInput" class="form-label">Adjuntar</label>
+                                    <input type="file" class="form-control" id="fileInput" name="fileInput" placeholder="Adjuntar">
+                                    <span class="text-danger" id="fileValidationError"></span>
+                                </div>
+                            </div>
+
+                            <!-- Select para UserList -->
+                            <div id="userListDiv" style="display: none;">
+                                <label asp-for="UserList" class="form-label">Usuarios</label>
+                                <select asp-for="NewHub.UserId" class="form-select mb-3">
+                                    <option value="">Seleccione un usuario</option>
+                                    @foreach (var user in Model.UserList)
+                                    {
+                                        <option value="@user.UserId">@($"{user.Name}, {user.LastName}")</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="UserList" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Anulacion -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Motivo de Anulación</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="deleteReason">Motivo:</label>
+                            <textarea id="deleteReason" class="form-control" rows="4"></textarea>
+                            <label id="deleteReasonError" class="text-danger" style="display: none;">Por favor, ingrese un motivo de anulación.</label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    @section Scripts {
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json"></script>
+
+
+        <script>
+
+
+            function performAction(targetElement) {
+                event.preventDefault();
+
+                const url_action = getAction(targetElement)
+
+                if (url_action.action == 'post') {
+                    performPost(targetElement, url_action.url);
+                } else {
+                    performGet(url_action.url);
+                }
+            }
+
+            $(document).ready(function () {
+                $('#myTabs a').on('click', function (e) {
+                    e.preventDefault()
+                    $(this).tab('show')
+                    showTable($(this).attr('href'));
+                });
+
+                showTable($('#myTabs .active').attr('href'));
+
+                function showTable(tabId) {
+                    $('#myTabContent .tab-pane').hide();
+                    $(tabId).show();
+                }
+            });
+
+            $(document).ready(function () {
+
+                $('#allDataModal').on('shown.bs.modal', function () {
+                    $('#allDataTable').DataTable({
+                        "paging": true,
+                        "searching": true,
+                        "info": true
+                    });
+                });
+            });
+
+
+            $(document).ready(function () {
+                $('#myTabs a').on('click', function (e) {
+                    e.preventDefault();
+                    $(this).tab('show');
+                });
+
+                $('#myTabs a').on('shown.bs.tab', function (e) {
+                    var tabId = $(this).attr('href');
+                    showTable(tabId);
+                });
+
+                showTable($('#myTabs .active').attr('href'));
+
+                function showTable(tabId) {
+                    $('#myTabContent .tab-pane').hide();
+                    $(tabId).show();
+
+
+                    var $table = $(tabId + ' table');
+
+                    if (!$table.data('datatable-initialized')) {
+
+                        $table.DataTable({
+                            // Configuración de DataTables
+                            language: {
+                                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+                            }
+                        });
+                        $table.data('datatable-initialized', true);
+                    }
+                }
+            });
+
+            function validateFields() {
+                var itemSelect = $('#itemSelect').val();
+                var isValid = true;
+
+                // Resetear mensajes de error
+                $('.text-danger').text('');
+
+                // Validar campos dependiendo de la selección del item
+                if (itemSelect === '1' || itemSelect === '3') {
+                    isValid = validateCommitment();
+                }
+
+                if (itemSelect === '2' || itemSelect === '3') {
+                    isValid = validateAttachment() && isValid;
+                }
+
+                // Devolver si todos los campos son válidos
+                return isValid;
+            }
+
+            // Funciones de validación específicas para cada tipo de item
+            function validateCommitment() {
+                var isValid = true;
+                var dueDate = $('#NewHub_DueDate').val();
+                var note = $('#NewHub_Note').val();
+                var userId = $('#NewHub_UserId').val();
+
+                if (!dueDate || dueDate === '') {
+                    $('#NewHub_DueDate').next('.text-danger').text('La fecha de vencimiento es requerida.');
+                    isValid = false;
+                } else {
+                    var currentDate = new Date();
+                    currentDate.setHours(0, 0, 0, 0)
+                    currentDate.setDate(currentDate.getDate() - 1);
+                    var selectedDate = new Date(dueDate);
+                    if (selectedDate <= currentDate) {
+                        $('#NewHub_DueDate').next('.text-danger').text('La fecha de vencimiento debe ser mayor o igual al día de hoy.');
+                        isValid = false;
+                    }
+                }
+
+                if (!note || note === '') {
+                    $('#NewHub_Note').next('.text-danger').text('La nota es requerida.');
+                    isValid = false;
+                }
+
+                if (!userId || userId === '') {
+                    $('#NewHub_UserId').next('.text-danger').text('El usuario es requerido.');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            function validateAttachment() {
+                var isValid = true;
+                var fileName = $('#NewHub_FileName').val();
+                var fileDescription = $('#NewHub_FileDescription').val();
+                var fileInput = $('#fileInput')[0].files[0];
+                var userId = $('#NewHub_UserId').val();
+
+                if (!fileName || fileName === '') {
+                    $('#NewHub_FileName').next('.text-danger').text('El nombre del archivo es requerido.');
+                    isValid = false;
+                }
+
+                if (!fileDescription || fileDescription === '') {
+                    $('#NewHub_FileDescription').next('.text-danger').text('La descripción del archivo es requerida.');
+                    isValid = false;
+                }
+
+                if (!fileInput) {
+                    $('#fileInput').next('.text-danger').text('El archivo adjunto es requerido.');
+                    isValid = false;
+                }
+
+                if (!userId || userId === '') {
+                    $('#NewHub_UserId').next('.text-danger').text('El usuario es requerido.');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            $(document).ready(function () {
+                $('#exampleModal .btn-primary').on("click", function () {
+
+                    if (!validateFields()) {
+                        // Si la validación falla, detener el envío del formulario
+                        return;
+                    }
+
+                    var hubData = {};
+                
+                    hubData.AssignmentId = $('#AssignmentId').val();
+                
+                    var dueDate = $('#NewHub_DueDate').val();
+                    if (dueDate !== null && dueDate !== '' && $('#compromisoDiv').is(':visible')) {
+                        hubData.DueDate = dueDate;
+                    }
+                
+                    var note = $('#NewHub_Note').val();
+                    if (note !== null && note !== '' && $('#compromisoDiv').is(':visible')) {
+                        hubData.Note = note;
+                    }
+
+                    var fileName = $('#NewHub_FileName').val();
+                    if (fileName !== null && fileName !== '' && $('#adjuntoDiv').is(':visible')) {
+                        hubData.FileName = fileName;
+                    }
+
+                    var fileDescription = $('#NewHub_FileDescription').val();
+                    if (fileDescription !== null && fileDescription !== '' && $('#adjuntoDiv').is(':visible')) {
+                        hubData.FileDescription = fileDescription;
+                    }
+
+                    var userId = $('#NewHub_UserId').val();
+                    if (userId !== null && userId !== '' && $('#userListDiv').is(':visible')) {
+                        hubData.UserId = userId;
+                    }
+
+
+                    var userId = $('#NewHub_UserId').val();
+                    var userName = $('#NewHub_UserId option:selected').text();
+
+                    if (userId !== null && userId !== '' && $('#userListDiv').is(':visible')) {
+                        hubData.UserId = userId;
+                        hubData.UserName = userName.trim(); 
+                    }
+                    var itemSelect = $('#itemSelect').val();
+                    if (itemSelect !== null && itemSelect !== '') {
+                        hubData.ItemSelect = itemSelect;
+                    } else {
+                        console.error('No se ha seleccionado ninguna opción.');
+                        return; 
+                    }
+                    
+                    var fileInput = document.getElementById('fileInput');
+                    if ($('#adjuntoDiv').is(':visible')) {
+                        if (fileInput.files.length > 0) {
+                            var file = fileInput.files[0];
+                    
+                            hubData.FileInput = file;
+                            console.log('Nombre del archivo adjunto:', file.name);
+                            console.log('Tamaño del archivo adjunto:', file.size, 'bytes');
+                            console.log('Tipo del archivo adjunto:', file.type);
+                        }
+                    }
+                    console.log('Datos enviados al servidor:', hubData); 
+
+                    var url = "/Assignment/NewHub";
+
+                    var formData = new FormData();
+                    
+                    for (var key in hubData) {
+                        formData.append(key, hubData[key]);
+                    }
+                    var fileInput = document.getElementById('fileInput');
+                    if (fileInput.files.length > 0) {
+                        var file = fileInput.files[0];
+                        formData.append('file', file);
+                        console.log('Nombre del archivo adjunto:', file.name);
+                        console.log('Tamaño del archivo adjunto:', file.size, 'bytes');
+                        console.log('Tipo del archivo adjunto:', file.type);
+                    }
+
+                    fetch(url, {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(data => {
+                            window.location.href = data.redirectUrl;
+                        })
+                        .catch(error => {
+                            console.error('Error en la solicitud fetch:', error);
+                        });
+                });
+            });
+
+
+            document.getElementById('itemSelect').addEventListener('change', function () {
+                var selectedItem = this.value;
+
+                document.getElementById('compromisoDiv').style.display = 'none';
+                document.getElementById('adjuntoDiv').style.display = 'none';
+                document.getElementById('userListDiv').style.display = 'none'; 
+
+                if (selectedItem === '1' || selectedItem === '3') {
+                    document.getElementById('compromisoDiv').style.display = 'block';
+                }
+
+                if (selectedItem === '2' || selectedItem === '3') {
+                    document.getElementById('adjuntoDiv').style.display = 'block';
+                }
+
+                if (selectedItem !== '') {
+                    document.getElementById('userListDiv').style.display = 'block';
+                }
+            });
+            $('.btn-download').on('click', function (event) {
+                event.preventDefault(); 
+                var hubId = $(this).data('hubid');
+                console.log('Hub ID:', hubId);
+                downloadFile(hubId);
+            });
+
+            function downloadFile(hubId) {
+                var url = '/Assignment/DownloadFile?hubId=' + hubId;
+                console.log('URL de descarga:', url);
+
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error al descargar el archivo');
+                        }
+                        // Obtener el nombre del archivo del encabezado Content-Disposition
+                        var fileName = 'nombre_archivo'; // Valor predeterminado
+                        var contentDisposition = response.headers.get('content-disposition');
+                        if (contentDisposition) {
+                            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                            var matches = filenameRegex.exec(contentDisposition);
+                            if (matches != null && matches[1]) {
+                                fileName = matches[1].replace(/['"]/g, '');
+                            }
+                        }
+                        return response.blob().then(blob => ({ fileName: fileName, blob: blob }));
+                    })
+                    .then(data => {
+                        console.log('Blob recibido:', data.blob);
+
+                        var fileURL = window.URL.createObjectURL(data.blob);
+                        console.log('URL del archivo:', fileURL);
+                        var a = document.createElement('a');
+                        a.href = fileURL;
+                        a.download = data.fileName; 
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(fileURL);
+                    })
+                    .catch(error => {
+                        console.error('Error al descargar el archivo:', error);
+                    });
+            }
+            $('.btn-delete').on('click', function () {
+                event.preventDefault();
+                var hubId = $(this).data('hubid');
+                $('#confirmDeleteBtn').data('hubid', hubId); // Aquí es donde asignas el hubId al botón de confirmación
+                $('#deleteModal').modal('show');
+            });
+            // Agrega un controlador de eventos para el botón de confirmación de eliminación
+            $('#confirmDeleteBtn').on('click', function () {
+                var hubId = $(this).data('hubid');
+                var reason = $('#deleteReason').val();
+                if (reason === '') {
+                    $('#deleteReasonError').text('Por favor, ingrese un motivo de anulación.').show();
+                    return;
+                } else {
+                    $('#deleteReasonError').hide();
+                }
+                // Realiza una solicitud para eliminar el elemento
+                fetch(`/Assignment/Delete?hubId=${hubId}&reason=${reason}`, {
+                    method: 'GET'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Realiza alguna acción si la solicitud se completa correctamente
+                            console.log('Elemento eliminado correctamente.');
+                            window.location.reload();
+
+                        } else {
+                            // Realiza alguna acción si la solicitud falla
+                            console.error('Error al eliminar el elemento.');
+                        }
+                    })
+                    .catch(error => {
+                        // Maneja los errores de la solicitud fetch
+                        console.error('Error en la solicitud fetch:', error);
+                    });
+                // Cierra la modal después de enviar la solicitud
+                $('#deleteModal').modal('hide');
+            });
+        </script>
+    }

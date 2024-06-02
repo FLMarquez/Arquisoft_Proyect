@@ -1,0 +1,64 @@
+﻿@using Cervantes.Arquisoft.View.Models
+@model IEnumerable<Cervantes.Arquisoft.View.Models.AssignmentViewModel>
+
+@{
+    // Inicializar la variable para almacenar los datos de las tareas en formato JSON
+    var jsonData = "[";
+
+    // Recorrer cada tarea en el ViewModel y agregar sus datos al JSON
+    foreach (var assignment in Model)
+    {
+        // Construir la cadena de texto con los datos de la tarea
+        var taskData = "{";
+        taskData += $"\"id\": \"{assignment.AssignmentId}\", ";
+        taskData += $"\"duration\": {Math.Ceiling((assignment.CompletedDate - assignment.StartedDate)?.TotalDays ?? 0)}, ";
+        taskData += $"\"name\": \"{assignment.AssignmentName}\", ";
+        taskData += $"\"actualStart\": \"{assignment.StartedDate?.ToString("yyyy-MM-dd")}\", ";
+        taskData += $"\"actualEnd\": \"{assignment.CompletedDate?.ToString("yyyy-MM-dd")}\"";
+        // Puedes agregar más propiedades aquí si es necesario
+        taskData += "},";
+
+        // Agregar los datos de la tarea al JSON
+        jsonData += taskData;
+    }
+
+    // Remover la coma final si hay al menos una tarea
+    if (Model.Any())
+    {
+        jsonData = jsonData.Remove(jsonData.Length - 1);
+    }
+
+    jsonData += "]";
+}
+<div id="containerPert" style="width: 500px; height: 400px;"></div>
+<div id="containerGantt" style="width: 500px; height: 400px;"></div>
+
+@section Scripts {
+    <script src="https://cdn.anychart.com/releases/8.12.0/js/anychart-core.min.js" type="text/javascript"></script>
+    <script src="https://cdn.anychart.com/releases/8.12.0/js/anychart-pert.min.js" type="text/javascript"></script>
+    <script>
+        // Obtener los datos en formato JSON
+        var data = @Html.Raw(jsonData);
+
+        // Ahora puedes usar la variable 'data' en tu script de JavaScript
+        // para crear el gráfico con los datos de las tareas
+        console.log(data); // Verificar que los datos se hayan pasado correctamente
+
+        anychart.onDocumentReady(function () {
+            // create a PERT chart
+            chart = anychart.pert();
+
+            // set chart data
+            chart.data(data, "asTable");
+
+            // set the title of the chart
+            chart.title("PERT Chart");
+
+            // set the container id for the chart
+            chart.container("container");
+
+            // initiate drawing the chart
+            chart.draw();
+        });
+    </script>
+}

@@ -1,0 +1,544 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+
+@model PaymentMethodViewModelList
+
+@{
+    ViewData["Title"] = "Cobros";
+}
+
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1 class="fw-bold">Listado de Cobros:  </h1>
+<h2>@Model.ProjectName (@Model.ClientName)</h2>
+<h5 class="fs-6">Permite gestionar los cobros del Proyecto</h5>
+<div class="input-group mb-3">
+    <a asp-action="Index" asp-controller="Project" class="btn btn-primary mb-3"> <i class="bi bi-box-arrow-in-left"></i> Volver a Proyectos</a>
+    <a asp-action="Create" asp-route-id="@Model.ProjectId" class="btn btn-primary mb-3">Crear Cobro</a>
+</div>
+
+<div class="border bg-light rounded-3 p-2">
+
+    <div class="row mb-3">
+        <h5 class="fs-6">
+            Presupuesto original del proyecto:
+            <span class="text-black">$@Model.ProjectBudget.ToString("N")</span>
+        </h5>
+    </div>
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+        <h5>Filtro de fechas:</h5>
+            </div>
+     <div class="col-10 mb-3">
+
+    <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+        <i class="fa fa-calendar"></i>&nbsp;
+        <span></span> <i class="fa fa-caret-down"></i>
+    </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+<div style="display: flex; align-items: center;">
+    <table class="table text-center">
+        <tr>
+            <td class="apiDate" hidden>@DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy")</td>
+            <td class="apiAmount" hidden>@Model.TotalAmount</td>
+            <td class="apiBalance" hidden>@Model.TotalBalance</td>
+
+            <td class="text-black">Monto Total</td>
+            <td>$@Model.TotalAmount.ToString("N")</td>
+
+            <td><a class="submitButtonAmount" href="#"><i class="bi bi-info-circle-fill"></i></a></td>
+            <td class="text-black">Saldo Total</td>
+            <td>$@Model.TotalBalance.ToString("N")</td>
+            <td><a class="submitButtonBalance" href="#"><i class="bi bi-info-circle-fill"></i></a></td>
+        </tr>
+    </table>
+</div>
+
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>Nº Cobro</th>
+            <th>Fecha</th>
+            <th>Medio de Pago</th>
+            <th style="text-align: right;">Monto</th>
+            <th></th>
+            <th style="text-align: right;">Saldo</th>
+            <th></th>
+            <th>Anular</th>
+            <th hidden></th>
+            <th hidden></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model.PaymentList)
+        {
+            <tr>
+                <td>@payment.PaymentId</td>
+                <td class="apiDate">@payment.PaymentDate.ToString("dd/MM/yyyy")</td>
+                @if (payment.IsDeleted)
+                {
+                    <td class="text-muted"><dev>@payment.MethodName</dev></td>
+                }
+                else
+                {
+                    <td>@payment.MethodName</td>
+                }
+                @if (payment.IsDeleted)
+                {
+                    <td class="text-muted" style="text-align: right; color: @(payment.Amount >= 0 ? "blue" : "red");"><del>$@payment.Amount.ToString("N")</del></td>
+
+                }
+                else
+                {
+                    <td style="text-align: right; color: @(payment.Amount >= 0 ? "blue" : "red");">$@payment.Amount.ToString("N")</td>
+                }
+
+                <td class="apiAmount" hidden>@payment.Amount</td>
+                <td><a class="submitButtonAmount" href="#"><i class="bi bi-info-circle-fill"></i></a></td>
+                <td style="text-align: right; color: @(payment.Balance >= 0 ? "blue" : "red");">$@payment.Balance.ToString("N")</td>
+                <td class="apiBalance" hidden>@payment.Balance</td>
+                <td><a class="submitButtonBalance" href="#"><i class="bi bi-info-circle-fill"></i></a></td>
+
+                <td>
+                    @if (payment.IsDeleted)
+                    {
+                        <small class="text-muted">@payment.DeletedReason</small>
+                    }
+                    else
+                    {
+                        var buttonId = "deleteBtn_" + payment.PaymentId; // Genera una ID dinámica para cada botón
+                        <button id="@buttonId" class="btn btn-danger btn-delete" data-paymentId="@payment.PaymentId">Anular</button>
+                    }
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<a href="https://argentinadatos.com/docs/" class="small text-muted" target="_blank">Api Argentina Datos</a>
+
+
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Motivo de Anulación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="deleteReason">Motivo:</label>
+                <textarea id="deleteReason" class="form-control" rows="4"></textarea>
+                <label id="deleteReasonError" class="text-danger" style="display: none;">Por favor, ingrese un motivo de anulación.</label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    
+
+       
+    
+
+    <script>
+        console.log('https://argentinadatos.com/docs/')
+        let table = $('#myTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            }
+        });
+    </script>
+    <script>
+        $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+            var startDate = picker.startDate.format('YYYY-MM-DD');
+            var endDate = picker.endDate.format('YYYY-MM-DD');
+
+            // Filtrar los datos en la tabla
+            $('#myTable tbody tr').each(function () {
+                var paymentDate = $(this).find('td:nth-child(2)').text();
+                var paymentDateFormatted = moment(paymentDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
+                // Comprobar si la fecha de pago está dentro del rango seleccionado
+                if (moment(paymentDateFormatted).isBetween(startDate, endDate, null, '[]')) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    </script>
+    <script>
+        document.querySelectorAll('.btn-delete').forEach(function (button) {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                var paymentId = this.getAttribute('data-paymentId');
+                console.log("paymentId en btn-delete:", paymentId); 
+                if (paymentId) {
+                    document.getElementById('confirmDeleteBtn').setAttribute('data-paymentId', paymentId); 
+                    var modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+                    modal.show();
+
+                    
+                    $('#confirmDeleteBtn').off('click').on('click', function () {
+                        var paymentId = document.getElementById('confirmDeleteBtn').getAttribute('data-paymentId'); 
+                        var reason = $('#deleteReason').val();
+                        if (reason === '') { 
+                            $('#deleteReasonError').text('Por favor, ingrese un motivo de anulación.').show(); 
+                            return; 
+                        } else {
+                            $('#deleteReasonError').hide(); 
+                        }
+                        fetch(`/Payment/Delete?paymentId=${paymentId}&reason=${reason}`, {
+                            method: 'GET'
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    console.log('Elemento eliminado correctamente.');
+                                    window.location.reload(); // Recarga la página
+
+                                } else {
+                                    console.error('Error al eliminar el elemento.');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error en la solicitud fetch:', error);
+                            });
+                        $('#deleteModal').modal('hide');
+                    });
+                } else {
+                    console.error("paymentId no está definido.");
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentPopover = null;
+
+            // Función para realizar la solicitud GET a la API
+            function callAPI(type, date, amount) {
+                // Dividir la fecha seleccionada en día, mes y año
+                var parts = date.split('/');
+                var year = parts[2];
+                var month = parts[1];
+                var day = parts[0];
+
+                // Construir la URL de la API
+                var apiUrl = 'https://api.argentinadatos.com/v1/cotizaciones/dolares/' + type + '/' + year + '/' + month + '/' + day;
+                console.log('apiUrl', apiUrl)
+                // Realizar la solicitud fetch
+                return fetch(apiUrl, {
+                    method: 'GET'
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+            // Manejar el clic del botón para la cantidad
+            document.querySelectorAll('.submitButtonAmount').forEach(button => {
+
+                button.addEventListener('click', async function () {
+                    event.preventDefault(); // Evita el comportamiento predeterminado del navegador
+                    handleButtonClick(this, '.apiAmount');
+                });
+            });
+
+            // Manejar el clic del botón para el saldo
+            document.querySelectorAll('.submitButtonBalance').forEach(button => {
+
+                button.addEventListener('click', async function () {
+                    event.preventDefault(); // Evita el comportamiento predeterminado del navegador
+                    handleButtonClick(this, '.apiBalance');
+                });
+            });
+
+            function handleButtonClick(button, apiClass) {
+                // Cerrar el popover actual si existe
+                if (currentPopover !== null) {
+                    currentPopover.style.display = 'none';
+                }
+
+                // Obtener la fila (tr) padre del botón
+                var row = button.closest('tr');
+
+                // Obtener la fecha y el monto del mismo row
+                var dateElement = row.querySelector('.apiDate');
+                var date = dateElement ? dateElement.innerText : '';
+                console.log("fecha: " + date);
+                var amountElement = row.querySelector(apiClass);
+                var amount = amountElement ? parseFloat(amountElement.innerText.replace('$', '').replace(',', '')) : 0;
+
+                // Convertir la fecha actual en un objeto Date y ajustarla
+                var today = new Date();
+                var ayer = new Date(today);
+                ayer.setDate(today.getDate() - 1);
+
+                // Si es sábado (6) o domingo (0), restar un día adicional
+                if (ayer.getDay() === 6) { // sábado
+                    ayer.setDate(ayer.getDate() - 1);
+                } else if (ayer.getDay() === 0) { // domingo
+                    ayer.setDate(ayer.getDate() - 2);
+                }
+
+                // Establecer la hora en 00:00
+                ayer.setHours(0, 0, 0, 0);
+
+                // Verificar si la fecha es igual a ayer
+                if (date === ayer.toLocaleDateString('es-ES')) {
+                    // Mostrar mensaje de "No hay datos para el cierre de ayer"
+                    var popoverContent = "<div><strong>No hay datos para el cierre de ayer.</strong></div>";
+                    var popover = createPopover(button, popoverContent);
+
+                    currentPopover = popover;
+
+                    // Desvanecer el popover después de 5 segundos
+                    setTimeout(function () {
+                        popover.style.display = 'none';
+                        currentPopover = null;
+                    }, 400);
+
+                    return; // Salir de la función si la fecha es ayer
+                }
+
+                // Verificar si el monto es cero
+                if (amount === 0) {
+                    // Mostrar mensaje de valor no calculable
+                    var popoverContent = "<div><strong>Valor no calculable</strong></div>";
+                    var popover = createPopover(button, popoverContent);
+
+                    currentPopover = popover;
+
+                    // Desvanecer el popover después de 5 segundos
+                    setTimeout(function () {
+                        popover.style.display = 'none';
+                        currentPopover = null;
+                    }, 5000);
+
+                    return; // Salir de la función si el monto es cero
+                }
+
+                // Realizar las consultas a la API para los diferentes tipos de cotización
+                var mayoristaPromise = callAPI('mayorista', date, amount);
+                var bluePromise = callAPI('blue', date, amount);
+                var oficialPromise = callAPI('oficial', date, amount);
+
+                mayoristaPromise.then(function (mayoristaVenta) {
+                    var totalMayoristaVenta = Math.floor(amount / mayoristaVenta);
+                    console.log("Date:", date, "Amount:", amount, "Mayorista Venta:", mayoristaVenta, "Total Mayorista Venta:", totalMayoristaVenta);
+                });
+
+                bluePromise.then(function (blueVenta) {
+                    var totalBlueVenta = Math.floor(amount / blueVenta);
+                    console.log("Date:", date, "Amount:", amount, "Blue Venta:", blueVenta, "Total Blue Venta:", totalBlueVenta);
+                });
+
+                oficialPromise.then(function (oficialVenta) {
+                    var totalOficialVenta = Math.floor(amount / oficialVenta);
+                    console.log("Date:", date, "Amount:", amount, "Oficial Venta:", oficialVenta, "Total Oficial Venta:", totalOficialVenta);
+                });
+
+                // Esperar a que todas las consultas se completen
+                Promise.all([mayoristaPromise, bluePromise, oficialPromise])
+                    .then(results => {
+                        // Extraer los valores de venta de los resultados de la API
+                        var mayoristaVenta = results[0].venta;
+                        var blueVenta = results[1].venta;
+                        var oficialVenta = results[2].venta;
+
+                        // Calcular el valor total multiplicando los precios por el monto
+                        amount = Math.floor(amount / 100); // CORRECION DE CEROS
+
+                        var totalMayoristaVenta = Math.floor(amount / mayoristaVenta);
+                        var totalBlueVenta = Math.floor(amount / blueVenta);
+                        var totalOficialVenta = Math.floor(amount / oficialVenta);
+
+                        console.log("Amount:", amount, "Mayorista Venta:", mayoristaVenta);
+                        console.log("Amount:", amount, "Blue Venta:", blueVenta);
+                        console.log("Amount:", amount, "Oficial Venta:", oficialVenta);
+
+                        // Mostrar los resultados en el popover
+                        var popoverContent = "<div><strong>Dolar a la fecha:</strong></div><hr>";
+                        popoverContent += "<div><strong>Mayorista:</strong> " + formatNumberWithCurrency(totalMayoristaVenta) + "</div>";
+                        popoverContent += "<div><strong>Blue:</strong> " + formatNumberWithCurrency(totalBlueVenta) + "</div>";
+                        popoverContent += "<div><strong>Oficial:</strong> " + formatNumberWithCurrency(totalOficialVenta) + "</div>";
+
+                        var popover = createPopover(button, popoverContent);
+
+                        currentPopover = popover;
+
+                        // Desvanecer el popover después de 5 segundos
+                        setTimeout(function () {
+                            popover.style.display = 'none';
+                            currentPopover = null;
+                        }, 5000);
+                    });
+            }
+
+            function createPopover(button, content) {
+                var popover = document.createElement('div');
+                popover.className = 'custom-popover';
+                popover.innerHTML = content;
+
+                // Añadir botón de cierre al popover
+                var closeButton = document.createElement('button');
+                closeButton.innerHTML = '×'; // Símbolo de "x" para cerrar
+                closeButton.className = 'close-button';
+                closeButton.style.position = 'absolute';
+                closeButton.style.top = '5px';
+                closeButton.style.right = '5px';
+                closeButton.style.padding = '5px';
+                closeButton.style.fontSize = '12px';
+                closeButton.style.border = 'none';
+                closeButton.style.background = 'none';
+                closeButton.style.cursor = 'pointer';
+                closeButton.addEventListener('click', function () {
+                    popover.style.display = 'none';
+                });
+                popover.appendChild(closeButton);
+
+                // Posicionamiento del popover
+                var rect = button.getBoundingClientRect();
+                popover.style.top = (rect.top + window.pageYOffset) + 'px';
+                popover.style.left = (rect.left + window.pageXOffset) + 'px';
+                popover.style.position = 'absolute';
+                popover.style.backgroundColor = '#fff';
+                popover.style.border = '1px solid #ccc';
+                popover.style.padding = '10px';
+                popover.style.zIndex = '9999';
+                popover.style.display = 'block';
+
+                document.body.appendChild(popover);
+
+                // Cerrar popover si se hace clic fuera de él
+                document.addEventListener('click', function (event) {
+                    var isClickInsidePopover = popover.contains(event.target);
+                    var isClickInsideButton = button.contains(event.target);
+                    if (!isClickInsidePopover && !isClickInsideButton) {
+                        popover.style.display = 'none';
+                    }
+                });
+
+                return popover;
+            }
+
+
+            // Función para formatear un número con el símbolo "$" y la separación de miles, eliminando los ceros decimales
+            function formatNumberWithCurrency(number) {
+                // Formatear el número con 2 decimales
+                var formattedNumber = number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+                // Eliminar los ceros decimales adicionales
+                formattedNumber = formattedNumber.replace(/(\.[0-9]*[1-9])0+$/, '$1');
+                formattedNumber = formattedNumber.replace(/\.$/, ''); // Eliminar el punto decimal si no quedan decimales
+
+                // Estilizar los ceros decimales
+                formattedNumber = formattedNumber.replace(/\.(\d)(?=(\d{3})+$)/g, '.$1<span class="decimal-zero">00</span>');
+
+                return formattedNumber;
+            }
+
+        });
+
+
+    </script>
+    <script type="text/javascript">
+        $(function () {
+
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function cb(start, end) {
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            }
+
+            $('#reportrange')
+            
+            
+            
+            .daterangepicker({
+                startDate: start,
+                endDate: end,
+                    "showDropdowns": true,
+                ranges: {
+                    'Hoy': [moment(), moment()],
+                    'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Ultimos 7 Dias': [moment().subtract(6, 'days'), moment()],
+                    'Ultimos 30 Dias': [moment().subtract(29, 'days'), moment()],
+                    'Este Mes': [moment().startOf('month'), moment().endOf('month')],
+                    'Ultimo Mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    "locale": {
+                        "format": "MM/DD/YYYY",
+                        "separator": " - ",
+                        "applyLabel": "Apply",
+                        "cancelLabel": "Cancel",
+                        "fromLabel": "From",
+                        "toLabel": "To",
+                        "customRangeLabel": "Custom",
+                        "weekLabel": "W",
+                        daysOfWeek: [
+                            'Do',
+                            'Lu',
+                            'Ma',
+                            'Mi',
+                            'Ju',
+                            'Vi',
+                            'Sa'
+                        ],
+                        monthNames: [
+                            'Enero',
+                            'Febrero',
+                            'Marzo',
+                            'Abril',
+                            'Mayo',
+                            'Junio',
+                            'Julio',
+                            'Agosto',
+                            'Septiembre',
+                            'Octubre',
+                            'Noviembre',
+                            'Diciembre'
+                        ],
+                        "firstDay": 1
+                    },
+
+            }, cb);
+
+            cb(start, end);
+
+        });
+    </script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+
+
+}

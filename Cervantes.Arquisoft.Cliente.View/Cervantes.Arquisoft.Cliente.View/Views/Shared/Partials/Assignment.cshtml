@@ -1,0 +1,59 @@
+﻿<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Agrupa todos los elementos en una sola tarjeta con estilo en línea -->
+            <div class="card" style="background-color: #f0f0f0; padding: 20px; margin-bottom: 20px;">
+                <h2 class="mb-4">Detalle de Tarea</h2>
+                <div class="row">
+                    <!-- Columna 1 -->
+                    <div class="col-md-4">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre"><br>
+
+                        <label for="descripcion">Descripción:</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                    </div>
+                    <!-- Columna 2 -->
+                    <div class="col-md-4">
+                        <label for="responsable">Responsable:</label>
+                        <select class="form-control" id="responsable" name="responsable">
+                            <option value="responsable1">Responsable 1</option>
+                            <option value="responsable2">Responsable 2</option>
+                            <option value="responsable3">Responsable 3</option>
+                        </select><br>
+
+                        <label>Estado:</label><br>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="completo" name="estado" value="completo">
+                            <label class="form-check-label" for="completo">Completo</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="visible" name="estado" value="visible">
+                            <label class="form-check-label" for="visible">Visible</label>
+                        </div>
+                    </div>
+                    <!-- Columna 3 -->
+                    <div class="col-md-4">
+                        <label for="fecha-programada">Fecha Programada:</label>
+                        <input type="date" class="form-control" id="fecha-programada" name="fecha-programada"><br>
+
+                        <label for="demora">Demora / Nueva Fecha:</label>
+                        <input type="date" class="form-control" id="demora" name="demora"><br>
+                    </div>
+                    <!-- Segunda Fila -->
+                    <div class="col-md-12">
+                        <label for="comentario">Comentario:</label>
+                        <textarea class="form-control" id="comentario" name="comentario"></textarea><br>
+
+                        <label for="respuesta-comentario">Respuesta al Comentario:</label>
+                        <textarea class="form-control" id="respuesta-comentario" name="respuesta-comentario"></textarea><br>
+
+                        <label for="adjuntar-documento">Adjuntar Documentos:</label>
+                        <input type="file" class="form-control-file" id="adjuntar-documento" name="adjuntar-documento">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

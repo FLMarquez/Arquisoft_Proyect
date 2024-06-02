@@ -1,0 +1,55 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@model ServiceTypeViewModel
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Editar Servicio de Proyecto: @Model.ServiceTypeName</h1>
+<h5>Editar informacion del servicio</h5>
+@*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-6">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-3">
+                <label for="Servicio de Proyecto" class="form-label">Nombre del Servicio de Proyecto</label>
+                <input type="text" class="form-control" asp-for="ServiceTypeName" placeholder="Servicio de Proyecto">
+                <span asp-validation-for="ServiceTypeName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ServiceTypeDescription" class="control-label">Descripción</label>
+<textarea asp-for="ServiceTypeDescription" class="form-control" id="serviceDescription" placeholder="Descripción del Servicio de Proyecto"></textarea>
+                <span asp-validation-for="ServiceTypeDescription" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group m-3">
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+    </div>
+
+</form>
+@section Scripts{
+    <script>
+        // Función para ajustar la altura del textarea según el contenido
+        function adjustTextareaHeight() {
+            var textarea = document.getElementById('serviceDescription');
+            textarea.style.height = 'auto'; // Restaurar la altura a auto para calcular el tamaño del contenido
+            textarea.style.height = textarea.scrollHeight + 'px'; // Ajustar la altura según el contenido
+        }
+
+        // Ajustar la altura del textarea al cargar la página
+        window.addEventListener('DOMContentLoaded', adjustTextareaHeight);
+
+        // Ajustar la altura del textarea cuando se cambie su contenido
+        document.getElementById('serviceDescription').addEventListener('input', adjustTextareaHeight);
+    </script>
+}

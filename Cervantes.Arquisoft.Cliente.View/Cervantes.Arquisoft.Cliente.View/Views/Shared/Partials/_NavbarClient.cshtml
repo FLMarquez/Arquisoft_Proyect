@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Cervantes.Arquisoft.View.Services
+@inject ICurrentClientService CurrentClientService
+
+@{
+    var currentClient = CurrentClientService.GetCurrentClient();
+}
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><strong>Arquisoft (para Clientes)</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+            <ul class="navbar-nav">
+                @if (currentClient != null)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">
+                            Cliente: @currentClient.CurrentClientFirstName @currentClient.CurrentClientLastName
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" data-bs-toggle="modal" data-bs-target="#confirmLogoutModal">Cerrar sesión</button>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmLogoutModal" tabindex="-1" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmLogoutModalLabel">Cerrar sesión</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas cerrar sesión?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="@Url.Action("Index", "Home")">Cerrar sesión</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+}

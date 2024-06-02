@@ -1,0 +1,86 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@using Cervantes.Arquisoft.View.Services
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CreateUserViewModel
+@inject ICurrentUserService CurrentUserService
+
+
+@{
+    ViewData["Title"] = "Edit";
+    var currentUser = CurrentUserService.GetCurrentUser();
+
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Editar Usuario: @Model.LastName, @Model.Name </h1>
+<h5>Editar datos de usuario</h5>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Edit">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label for="Nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" asp-for="Name" placeholder="Nombre">
+        <span asp-validation-for="Name" class="text-danger"></span>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="Apellido" class="form-label">Apellido</label>
+        <input type="text" class="form-control" asp-for="LastName" placeholder="Apellido">
+        <span asp-validation-for="LastName" class="text-danger"></span>
+
+    </div>
+@*
+    <div class="mb-3">
+        <label for="Contraseña" class="form-label">Contraseña</label>
+        <input type="text" class="form-control" asp-for="Password" placeholder="Password">
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+    </div>*@
+
+
+    <div class="mb-3">
+        <label for="DNI" class="form-label">DNI</label>
+        <input type="number" class="form-control" asp-for="DocumentNumber" placeholder="DNI">
+        <span asp-validation-for="DocumentNumber" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="email" class="form-control" asp-for="Mail" placeholder="Email">
+        <span asp-validation-for="Mail" class="text-danger"></span>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="Telefono" class="form-label">Telefono</label>
+        <input type="number" class="form-control" asp-for="Telephone" placeholder="Telefono">
+        <span asp-validation-for="Telephone" class="text-danger"></span>
+
+    </div>
+@if (int.TryParse(currentUser.CurrentUserRole, out int userRole) && userRole == 1)
+{
+    <div class="form-group">
+        <label asp-for="UserRoleId" class="control-label">Rol del Usuario</label>
+        <select asp-for="UserRoleId" asp-items="Model.UserRoleList.Where(x => x.Value != 1.ToString())" class="form-control"></select>
+        <span asp-validation-for="UserRoleId" class="text-danger"></span>
+    </div>
+}
+@*    <div class="mb-3">
+        <label for="Fecha y Hora del Ultimo Ingreso" class="form-label">Fecha y Hora del Ultimo Ingreso</label>
+        <input type="datetime" class="form-control" asp-for="Date_time_last" placeholder="Fecha y Hora del Ultimo Ingreso">
+        <span asp-validation-for="Date_time_last" class="text-danger"></span>
+
+    </div>*@
+
+    
+    <button type="submit" class="btn btn-primary">Enviar</button> 
+    <a asp-action="List" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+}

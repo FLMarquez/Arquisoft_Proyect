@@ -1,0 +1,461 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Cervantes.Arquisoft.View.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Cervantes.Arquisoft.View.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\css\\frappe-gantt.css",
+      "PackagePath": "staticwebassets\\css\\frappe-gantt.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\css\\images\\logo.png",
+      "PackagePath": "staticwebassets\\css\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\css\\progress-wizard.min.css",
+      "PackagePath": "staticwebassets\\css\\progress-wizard.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\img\\back.jpg",
+      "PackagePath": "staticwebassets\\img\\back.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\img\\client.jpg",
+      "PackagePath": "staticwebassets\\img\\client.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\img\\services\\conduction.png",
+      "PackagePath": "staticwebassets\\img\\services\\conduction.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\img\\services\\preproject.png",
+      "PackagePath": "staticwebassets\\img\\services\\preproject.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\img\\services\\projectandexe.png",
+      "PackagePath": "staticwebassets\\img\\services\\projectandexe.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\img\\services\\projectdetail.png",
+      "PackagePath": "staticwebassets\\img\\services\\projectdetail.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\img\\services\\projectwdetail.png",
+      "PackagePath": "staticwebassets\\img\\services\\projectwdetail.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\img\\user.jpg",
+      "PackagePath": "staticwebassets\\img\\user.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\JS-Gantt-Chart-master\\README.md",
+      "PackagePath": "staticwebassets\\js\\JS-Gantt-Chart-master\\README.md"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\JS-Gantt-Chart-master\\gantt.css",
+      "PackagePath": "staticwebassets\\js\\JS-Gantt-Chart-master\\gantt.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\JS-Gantt-Chart-master\\gantt.js",
+      "PackagePath": "staticwebassets\\js\\JS-Gantt-Chart-master\\gantt.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\JS-Gantt-Chart-master\\gantt.min.css",
+      "PackagePath": "staticwebassets\\js\\JS-Gantt-Chart-master\\gantt.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\JS-Gantt-Chart-master\\gantt.min.js",
+      "PackagePath": "staticwebassets\\js\\JS-Gantt-Chart-master\\gantt.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\frappe-gantt.js",
+      "PackagePath": "staticwebassets\\js\\frappe-gantt.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\frappe-gantt.js.map",
+      "PackagePath": "staticwebassets\\js\\frappe-gantt.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\frappe-gantt.min.js",
+      "PackagePath": "staticwebassets\\js\\frappe-gantt.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\frappe-gantt.min.js.map",
+      "PackagePath": "staticwebassets\\js\\frappe-gantt.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\go.js\\go-debug-module.js",
+      "PackagePath": "staticwebassets\\js\\go.js\\go-debug-module.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\go.js\\go-debug.d.ts",
+      "PackagePath": "staticwebassets\\js\\go.js\\go-debug.d.ts"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\go.js\\go-debug.js",
+      "PackagePath": "staticwebassets\\js\\go.js\\go-debug.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\go.js\\go-debug.mjs",
+      "PackagePath": "staticwebassets\\js\\go.js\\go-debug.mjs"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\go.js\\go-module.d.ts",
+      "PackagePath": "staticwebassets\\js\\go.js\\go-module.d.ts"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\go.js\\go-module.js",
+      "PackagePath": "staticwebassets\\js\\go.js\\go-module.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\go.js\\go.d.ts",
+      "PackagePath": "staticwebassets\\js\\go.js\\go.d.ts"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\go.js\\go.js",
+      "PackagePath": "staticwebassets\\js\\go.js\\go.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\go.js\\go.mjs",
+      "PackagePath": "staticwebassets\\js\\go.js\\go.mjs"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\projectStateChart.js",
+      "PackagePath": "staticwebassets\\js\\projectStateChart.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\AUTHORS.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\AUTHORS.txt"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\external\\jquery\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\external\\jquery\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\images\\ui-icons_444444_256x240.png",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\images\\ui-icons_444444_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\images\\ui-icons_555555_256x240.png",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\images\\ui-icons_555555_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\images\\ui-icons_777620_256x240.png",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\images\\ui-icons_777620_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\images\\ui-icons_777777_256x240.png",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\images\\ui-icons_777777_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\images\\ui-icons_cc0000_256x240.png",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\images\\ui-icons_cc0000_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\images\\ui-icons_ffffff_256x240.png",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\images\\ui-icons_ffffff_256x240.png"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\index.html",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\jquery-ui.css",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\jquery-ui.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\jquery-ui.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\jquery-ui.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\jquery-ui.min.css",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\jquery-ui.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\jquery-ui.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\jquery-ui.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\jquery-ui.structure.css",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\jquery-ui.structure.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\jquery-ui.structure.min.css",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\jquery-ui.structure.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\jquery-ui.theme.css",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\jquery-ui.theme.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\jquery-ui.theme.min.css",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\jquery-ui.theme.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-ui\\package.json",
+      "PackagePath": "staticwebassets\\lib\\jquery-ui\\package.json"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Lmarquez\\Source\\Repos\\FLMarquez\\Arquisoft\\Cervantes.Arquisoft.Cliente.View\\Cervantes.Arquisoft.Cliente.View\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Cervantes.Arquisoft.View.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.Cervantes.Arquisoft.View.props",
+      "PackagePath": "build\\Cervantes.Arquisoft.View.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.Cervantes.Arquisoft.View.props",
+      "PackagePath": "buildMultiTargeting\\Cervantes.Arquisoft.View.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.Cervantes.Arquisoft.View.props",
+      "PackagePath": "buildTransitive\\Cervantes.Arquisoft.View.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

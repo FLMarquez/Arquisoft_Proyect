@@ -1,0 +1,105 @@
+﻿@using Cervantes.Arquisoft.View.Models
+@model AssignmentTypeViewModel
+
+@{
+    ViewData["Title"] = "AssignmentType";
+
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+
+<h1>Tareas para @Model.ServiceTypeName</h1>
+
+<h5>Permite administrar las tareas</h5>
+
+<a asp-action="Index" asp-controller="ServiceType" class="btn btn-primary mb-3"> Volver a Servicios</a>
+<a asp-action="Create" asp-route-id="@Model.ServiceTypeId" class="btn btn-primary mb-3">Crear Nueva Tarea</a>
+<div>
+    <small>Las tareas se pueden cambiar de orden de acuerdo a lo que el servicio requiera.</small>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody id="sortable">
+        @if (Model.AssignmentTypeList.Any())
+        {
+            foreach (var assignmentType in Model.AssignmentTypeList)
+            {
+                <tr>
+                    <td>
+                        <i class="bi bi-arrows-move"></i>
+                    </td>
+                    <td>
+                        @assignmentType.AssignmentTypeName
+                    </td>
+                    <td>
+                        @assignmentType.AssignmentTypeDescription
+                    </td>
+                    <td>
+                        <input type="hidden" value="@assignmentType.AssignmentTypeId" class="ids" />
+                        <a asp-action="Edit" asp-route-id="@assignmentType.AssignmentTypeId" class="btn btn-primary"><i class="bi bi-pencil-fill"> </i>Editar</a>
+                        <a asp-action="Delete" asp-route-id="@assignmentType.AssignmentTypeId" class="btn btn-danger"><i class="bi bi-trash"></i>Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">No hay tareas disponibles.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        const idService = '@Model.ServiceTypeId';
+        $(function () {
+            const urlSorter = '@Url.Action("sorter")';
+            $("#sortable").sortable(
+                {
+                    stop: async function (e, ui) {
+                        await updateOrder();
+                    }
+                });
+
+            async function updateOrder() {
+                const ids = getIdsFromElements();
+                await idsToBack(ids);
+            }
+
+            function getIdsFromElements() {
+                const ids = $(".ids").map(function () {
+                    return $(this).val();
+                }).get();
+
+                return ids;
+            }
+
+            async function idsToBack(ids) {
+                var data = JSON.stringify(ids);
+                console.log("idsTo back")
+                console.log(idService)
+                await fetch(urlSorter, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-IdService': idService // Agregar el encabezado personalizado
+                    }
+                });
+            }
+        })
+    </script>
+
+}

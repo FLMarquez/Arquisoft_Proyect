@@ -1,0 +1,54 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@model IEnumerable<BudgetViewModel>
+
+@{
+    ViewData["Title"] = "Budget";
+
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Listado de Presupuestos</h1>
+<h5>Permite administrar los presupuestos emitidos y crear nuevos.</h5>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Crear Presupuesto</a>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Presupuesto N°</th>
+            <th>Proyecto</th>
+            <th>Cliente</th>
+            <th>Arquitecto</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    @obj.BudgetId
+                </td>
+                <td>
+                    @obj.Project.Name
+                </td>
+                <td>
+                    @obj.Client.Name, @obj.Client.LastName
+                </td>
+                <td>
+                    @obj.User.Name, @obj.User.LastName
+                </td>
+                <td>
+                    @obj.BudgetState
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@obj.BudgetId" class="btn btn-primary">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@obj.BudgetId" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,13 @@
+﻿@model Cervantes.Arquisoft.View.Models.AssignmentViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h3 class="mb-3">¿Está seguro que desea borrar el tipo @Model.AssignmentName </h3>
+
+<form asp-action="DeleteId">
+    <input type="hidden" asp-for="AssignmentId" />
+    <button type="submit" class="btn btn-danger">Borrar</button>
+    <a class="btn btn-secondary" asp-action="Index" asp-controller="ServiceType">Cancelar</a>
+</form>

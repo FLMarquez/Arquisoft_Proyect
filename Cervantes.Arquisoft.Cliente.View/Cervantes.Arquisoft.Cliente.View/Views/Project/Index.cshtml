@@ -1,0 +1,86 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@model IEnumerable<ProjectViewModel>
+
+@{
+    ViewData["Title"] = "Project";
+
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Listado de Proyectos</h1>
+<h5>Gestion de tareas, cobros y graficos</h5>
+<div class="input-group mb-3">
+    <a asp-action="Create" class="btn btn-primary mb-3"><i class="bi bi-plus-square"> </i> Crear Nuevo Proyecto</a>
+    <a asp-action="ExportToExcel" class="btn btn-primary mb-3"><i class="bi bi-table"> </i> Exportar a Excel</a>
+</div>
+
+<table id="myTable"  class="table">
+    <thead>
+        <tr>
+            <th>Proyecto</th>
+            <th>Cliente</th>
+            <th>Usuario</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td class="searchableItem">
+                    @project.Name
+                </td>
+                <td>
+                    @project.ClientName, @project.ClientLastName
+                </td>
+                <td>
+                    @project.UserName, @project.UserLastName
+                </td>
+
+                <td>
+                    <div class="btn-group">
+                        <a asp-action="Edit" asp-route-id="@project.Id" class="btn btn-primary"><i class="bi bi-pencil-fill"> </i> Editar  </a>
+                        <a asp-action="Delete" asp-route-id="@project.Id" class="btn btn-danger"><i class="bi bi-trash"> </i> Eliminar </a>
+                        <a asp-controller="Assignment" asp-action="Index" asp-route-id="@project.Id" class="btn btn-info"><i class="bi bi-check-square-fill"></i> Tareas </a>
+                        <a asp-controller="Payment" asp-action="Index" asp-route-id="@project.Id" class="btn btn-warning"><i class="bi bi-receipt"></i> Cobros </a>
+                        <a asp-controller="Assignment" asp-action="Graph" asp-route-id="@project.Id" class="btn btn-primary"><i class="bi bi-table"></i> Grafico </a>
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json"></script>
+    <script>
+        document.addEventListener("keyup", e => {
+            if (e.target.matches("#searcher")) {
+                const searchTerm = e.target.value.toLowerCase();
+                document.querySelectorAll(".searchableItem").forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    const row = item.closest("tr"); // Encuentra la fila que contiene el elemento searchableItem
+                    if (text.includes(searchTerm)) {
+                        row.style.display = ""; // Muestra la fila
+                    } else {
+                        row.style.display = "none"; // Oculta la fila
+                    }
+                });
+            }
+        });
+
+    </script>
+    <script>
+        let table = $('#myTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            "columnDefs": [
+                { "orderable": false, "targets": 3 } // Deshabilita la ordenación para la primera columna (índice 0)
+            ]
+        });
+    </script>
+}

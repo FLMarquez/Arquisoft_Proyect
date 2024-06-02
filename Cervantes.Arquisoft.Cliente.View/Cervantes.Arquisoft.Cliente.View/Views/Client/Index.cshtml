@@ -1,0 +1,474 @@
+﻿@using Cervantes.Arquisoft.View.Models
+@using Cervantes.Arquisoft.View.Services
+@model DashboardClientViewModel
+
+
+@inject ICurrentClientService CurrentClientService
+
+@{
+    ViewData["Title"] = "Dashboard";
+    var currentClient = CurrentClientService.GetCurrentClient();
+}
+
+<partial name="~/Views/Shared/Partials/_NavbarClient.cshtml" />
+
+<div class="container">
+    <h1 class="bg-primary text-light p-3">Dashboard</h1>
+    <h5>Bienvenido <strong>@currentClient.CurrentClientFirstName</strong>! </h5>
+    <p>
+        A continuación, se presenta una visualización de los proyectos, incluyendo su estado actual,
+        tipología y el arquitecto responsable de cada proyecto.
+        Esto permite el seguimiento de sus proyectos,
+        brindando información clave sobre su progreso y las personas involucradas en su ejecución.
+    </p>
+
+    <h5>Tus proyectos actuales:</h5>
+
+
+
+    <div class="accordion" id="accordionProjects">
+        @foreach (var project in Model.ProjectList)
+        {
+            var projectAssignments = Model.AssignmentList.Where(a => a.ProjectId == project.ProjectId && !a.NotVisible);
+
+
+
+            <div class="accordion-item mb-3 shadow rounded">
+                <h2 class="accordion-header" id="headingProject-@project.ProjectId">
+                    <button class="accordion-button bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProject-@project.ProjectId" aria-expanded="false" aria-controls="collapseProject-@project.ProjectId">
+                        <strong>@project.Name</strong> - <span class="badge bg-light text-primary">Presupuesto: @project.Budget</span>
+                    </button>
+                </h2>
+                <div id="collapseProject-@project.ProjectId" class="accordion-collapse collapse" aria-labelledby="headingProject-@project.ProjectId" data-bs-parent="#accordionProjects">
+
+                    <div class="accordion-body">
+
+                        @{
+                            var index = 0;
+
+                            double totalTasks = projectAssignments.Count();
+                            double startedTasks = projectAssignments.Count(a => a.IsStarted && !a.IsCompleted && !a.IsSkipped);
+                            double completedTasks = projectAssignments.Count(a => a.IsCompleted);
+                            double SkippedTasks = projectAssignments.Count(a => a.IsSkipped);
+                            double onWait = projectAssignments.Count(a => !a.IsStarted && !a.IsSkipped && !a.IsCompleted);
+
+                            double averageCompletionPercentage = totalTasks > 0 ? Math.Floor((completedTasks / totalTasks * 100)) : 0;
+                            double averageStartedPercentage = totalTasks > 0 ? Math.Floor((startedTasks / totalTasks * 100)) : 0;
+                            double averageSkippedPercentage = totalTasks > 0 ? Math.Floor((SkippedTasks / totalTasks * 100)) : 0;
+                            double averageOnWaitPercentage = onWait > 0 ? Math.Floor((onWait / totalTasks * 100)) : 0;
+
+                            double startedPercentage = totalTasks > 0 ? Math.Floor((startedTasks / totalTasks * 100)) : 0;
+                            double completedPercentage = totalTasks > 0 ? Math.Floor((completedTasks / totalTasks * 100)) : 0;
+                            double SkippedPercentage = totalTasks > 0 ? Math.Floor((SkippedTasks / totalTasks * 100)) : 0;
+                            double onWaitPercentage = onWait > 0 ? Math.Floor((onWait / totalTasks * 100)) : 0;
+
+                        }
+                        @if (project != null && projectAssignments != null && projectAssignments.Any())
+                        {
+                            <!-- Progress Bar -->
+
+                            <div class="">
+                                <div class="row">
+                                    <ul class="progress-indicator m-1 p-1">
+                                        @foreach (var Assignment in projectAssignments)
+                                        {
+                                            if (Assignment.IsCompleted == true && Assignment.IsStarted == true)
+                                            {
+                                                <li class="completed">
+                                                    <span class="bubble"></span>
+                                                    @Assignment.AssignmentName <br><small>Completa</small>
+                                                </li>
+                                            }
+                                            else if (Assignment.IsCompleted == false && Assignment.IsStarted == true && Assignment.IsSkipped == false)
+                                            {
+                                                <li class="active">
+                                                    <span class="bubble"></span>
+                                                    @Assignment.AssignmentName <br><small>Iniciada</small>
+                                                </li>
+                                            }
+                                            else if (Assignment.IsSkipped == true)
+                                            {
+                                                <li class="warning">
+                                                    <span class="bubble"></span>
+                                                    @Assignment.AssignmentName <br><small>Omitida</small>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <span class="bubble"></span>
+                                                    @Assignment.AssignmentName <br><small>En Espera</small>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+
+
+                                </div>
+                                <!-- Progress Details -->
+                                <div class="row">
+                                    <div id="ProgressBarDetailed" class="">
+                                        <div class="border rounded m-5 p-2">
+
+                                            <h3 class="h4">Estado de tareas:</h3>
+                                            <p>Completas:</p>
+                                            <div class="progress m-3">
+                                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: @averageCompletionPercentage%">
+                                                    <span class="sr-only">@averageCompletionPercentage%</span>
+                                                </div>
+                                            </div>
+                                            <p>Iniciadas:</p>
+                                            <div class="progress m-3">
+                                                <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar" style="width: @averageStartedPercentage%">
+                                                    <span class="sr-only">@averageStartedPercentage%</span>
+                                                </div>
+                                            </div>
+                                            <p>Omitidas:</p>
+                                            <div class="progress m-3">
+
+                                                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: @averageSkippedPercentage%">
+                                                    <span class="sr-only">@averageSkippedPercentage%</span>
+                                                </div>
+                                            </div>
+                                            <p>En Espera:</p>
+                                            <div class="progress m-3">
+
+                                                <div class="progress-bar bg-dark progress-bar-striped progress-bar-animated" role="progressbar" style="width: @averageOnWaitPercentage%">
+                                                    <span class="sr-only">@averageOnWaitPercentage%</span>
+                                                </div>
+                                            </div>
+                                            <div class="m-5 border-top">
+                                                <strong>Total:</strong>
+                                                <div class="progress m-3">
+                                                    <div class="progress-bar bg-body progress-bar-striped progress-bar-animated text-black-50 role="progressbar" style="width: @onWaitPercentage%">
+                                                        <span class="sr-only">@onWaitPercentage% Es Espera</span>
+                                                    </div>
+                                                    <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar" style="width: @startedPercentage%">
+                                                        <span class="sr-only">@startedPercentage% Iniciadas</span>
+                                                    </div>
+                                                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: @completedPercentage%">
+                                                        <span class="sr-only">@completedPercentage% Completas</span>
+                                                    </div>
+                                                    <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: @SkippedPercentage%">
+                                                        <span class="sr-only">@SkippedPercentage% Omitidas</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+
+
+
+
+                            @foreach (var task in projectAssignments)
+                            {
+
+
+
+
+                                <div class="col mb-4">
+                                    <div class="card">
+                                        <div class="card-header bg-secondary">
+                                            <h5 class="mb-0">
+                                                <span><small class="text-muted">Tarea:</small> @task.AssignmentName</span>
+                                                <div class="">
+                                                    @if (task.IsCompleted)
+                                                    {
+                                                        <p class="col-auto badge badge-pill bg-success m-1">Completa</p>
+                                                    }
+                                                    @if (task.IsSkipped)
+                                                    {
+                                                        <p class="col-auto badge badge-pill bg-warning m-1">Omitida</p>
+                                                    }
+                                                    @if (task.IsStarted && !task.IsCompleted && !task.IsSkipped)
+                                                    {
+                                                        <p class="col-auto badge badge-pill bg-info m-1">Iniciada</p>
+                                                    }
+                                                </div>
+                                            </h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><strong>Descripcion de la tarea:</strong> @(string.IsNullOrEmpty(task.AssignmentDescription) ? "N/A" : task.AssignmentDescription)</li>
+                                                <li class="list-group-item"><strong>Compromiso Inicial:</strong> @task.OriginalDueDate?.ToString("dd-MM-yy")</li>
+                                                <li class="list-group-item">
+                                                    <strong>Compromiso Actual:</strong>
+                                                    @{
+                                                        // Subconsulta para obtener el compromiso actual
+                                                        var maxDueDate = Model.HubList
+                                                        .Where(item => item.AssignmentId == task.AssignmentId)
+                                                        .Max(item => item.DueDate);
+
+                                                        if (maxDueDate.HasValue)
+                                                        {
+                                                            <text>@maxDueDate?.ToString("dd-MM-yyyy")</text>
+                                                        }
+                                                        else
+                                                        {
+                                                            <text>(Vacio)</text>
+                                                        }
+                                                    }
+                                                </li>
+                                                @if (task.IsCompleted)
+                                                {
+                                                    <li class="list-group-item"><strong>Fecha Completa:</strong> @task.CompletedDate?.ToString("dd-MM-yy")</li>
+                                                }
+                                                @if (task.IsStarted)
+                                                {
+                                                    <li class="list-group-item"><strong>Fecha de Inicio:</strong> @task.StartedDate?.ToString("dd-MM-yy")</li>
+                                                }
+
+                                                @if (task.IsSkipped)
+                                                {
+                                                    <li class="list-group-item"><strong>Fecha Omitida:</strong> @task.SkippedDate?.ToString("dd-MM-yy")</li>
+                                                }
+                                            </ul>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-@task.AssignmentId">
+                                                Ver Compromisos y Adjuntos
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal para los detalles del assignment -->
+                                    <div class="modal fade" id="modal-@task.AssignmentId" tabindex="-1" aria-labelledby="modal-@task.AssignmentId-label" aria-hidden="true">
+                                        <div class="modal-dialog modal-fullscreen">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modal-@task.AssignmentId-label">Detalles de @task.AssignmentName</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Tabla para los hubItems -->
+                                                    <table class="display table table-striped table-bordered">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th>Compromiso</th>
+                                                                <th>Fecha</th>
+                                                                <th>Nota</th>
+                                                                <th>Usuario</th>
+                                                                <th>Archivo</th>
+                                                                <th>Descripción</th>
+                                                                <th>Descarga</th>
+                                                                <th>Anulada</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- Filas de la tabla -->
+                                                            @foreach (var hubItem in Model.HubList.Where(item => item.AssignmentId == task.AssignmentId))
+                                                            {
+                                                                <tr>
+
+                                                                    <td>
+                                                                        @if (hubItem.DueDate.HasValue)
+                                                                        {
+                                                                            @if (hubItem.IsDeleted == null || hubItem.IsDeleted == false)
+                                                                            {
+                                                                                @hubItem.DueDate.Value.ToString("dd-MM-yyyy")
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span class="text-muted small">@hubItem.DueDate.Value.ToString("dd-MM-yyyy")</span>
+                                                                            }
+
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span class="text-muted small">(Vacio)</span>
+                                                                        }
+                                                                    </td>
+                                                                    <td>
+                                                                        @if (hubItem.HubDate != null)
+                                                                        {
+                                                                            @if (hubItem.IsDeleted == null || hubItem.IsDeleted == false)
+                                                                            {
+                                                                                @hubItem.HubDate.ToString("dd-MM-yyyy")
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span class="text-muted small">@hubItem.HubDate.ToString("dd-MM-yyyy")</span>
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span class="text-muted small">(Vacio)</span>
+                                                                        }
+                                                                    </td>
+                                                                    <td>
+                                                                        @if (!string.IsNullOrEmpty(hubItem.Note))
+                                                                        {
+                                                                            @if (hubItem.IsDeleted == null || hubItem.IsDeleted == false)
+                                                                            {
+                                                                                @hubItem.Note
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span class="text-muted small"> @hubItem.Note</span>
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span class="text-muted small">(Vacio)</span>
+                                                                        }
+                                                                    </td>
+                                                                    <td>
+                                                                        @if (!string.IsNullOrEmpty(hubItem.UserName))
+                                                                        {
+                                                                            @hubItem.UserName
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span class="text-muted small">(Vacio)</span>
+                                                                        }
+                                                                    </td>
+                                                                    <td>
+                                                                        @if (!string.IsNullOrEmpty(hubItem.FileName))
+                                                                        {
+                                                                            @if (hubItem.IsDeleted == null || hubItem.IsDeleted == false)
+                                                                            {
+                                                                                @hubItem.FileName
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span class="text-muted small"> @hubItem.FileName</span>
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span class="text-muted small">(Vacio)</span>
+                                                                        }
+                                                                    </td>
+                                                                    <td>
+                                                                        @if (!string.IsNullOrEmpty(hubItem.FileDescription))
+                                                                        {
+
+
+                                                                            @if (hubItem.IsDeleted == null || hubItem.IsDeleted == false)
+                                                                            {
+                                                                                @hubItem.FileDescription
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span class="text-muted small"> @hubItem.FileDescription</span>
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span class="text-muted small">(Vacio)</span>
+                                                                        }
+                                                                    </td>
+                                                                    <td>
+                                                                        @if (string.IsNullOrEmpty(hubItem.FileName))
+                                                                        {
+                                                                            <span class="text-muted small">(Vacio)</span>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @if (hubItem.IsDeleted == null || hubItem.IsDeleted == false)
+                                                                            {
+                                                                                <button class="btn btn-primary btn-download" data-hubid="@hubItem.HubId">Descargar</button>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span class="text-muted small">(Vacio)</span>
+                                                                            }
+
+                                                                        }
+                                                                    </td>
+                                                                    <td>
+                                                                        @if (hubItem.IsDeleted == null || hubItem.IsDeleted == false)
+                                                                        {
+                                                                            <span class="text-muted small">(Vacio)</span>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @hubItem.DeletedReason
+
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @section Scripts {
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json"></script>
+
+        <script>
+            let table = new DataTable('#myTable', {
+                // config options...
+            });
+
+            $('.btn-download').on('click', function (event) {
+                event.preventDefault();
+                var hubId = $(this).data('hubid');
+                console.log('Hub ID:', hubId);
+                downloadFile(hubId);
+            });
+            function downloadFile(hubId) {
+                var url = '/Assignment/DownloadFile?hubId=' + hubId;
+                console.log('URL de descarga:', url);
+
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error al descargar el archivo');
+                        }
+                        // Obtener el nombre del archivo del encabezado Content-Disposition
+                        var fileName = 'nombre_archivo'; // Valor predeterminado
+                        var contentDisposition = response.headers.get('content-disposition');
+                        if (contentDisposition) {
+                            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                            var matches = filenameRegex.exec(contentDisposition);
+                            if (matches != null && matches[1]) {
+                                fileName = matches[1].replace(/['"]/g, '');
+                            }
+                        }
+                        return response.blob().then(blob => ({ fileName: fileName, blob: blob }));
+                    })
+                    .then(data => {
+                        console.log('Blob recibido:', data.blob);
+
+                        var fileURL = window.URL.createObjectURL(data.blob);
+                        console.log('URL del archivo:', fileURL);
+                        var a = document.createElement('a');
+                        a.href = fileURL;
+                        a.download = data.fileName;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(fileURL);
+                    })
+                    .catch(error => {
+                        console.error('Error al descargar el archivo:', error);
+                    });
+            }
+        </script>
+
+
+    }

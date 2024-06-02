@@ -1,0 +1,82 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@model ProjectTypeViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Editar Tipo de Proyecto: @Model.ProjectTypeName</h1>
+<h5>Editar informacion de tipos de proyecto</h5>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="ProjectTypeId" />
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label for="Tipo de Proyecto" class="form-label">Tipo de Proyecto</label>
+                <input type="text" class="form-control" asp-for="ProjectTypeName" placeholder="Tipo de Proyecto">
+                <span asp-validation-for="ProjectTypeName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProjectTypeDescription" class="control-label">Descripción</label>
+<textarea asp-for="ProjectTypeDescription" class="form-control" rows="4" placeholder="Descripción del Tipo de Proyecto"></textarea>
+                <span asp-validation-for="ProjectTypeDescription" class="text-danger"></span>
+            </div>
+
+            <!-- Agregar las condiciones para los otros campos -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="RangeMin" class="control-label">Rango Mín. (m²)</label>
+                        <div class="input-group">
+                            <input asp-for="RangeMin" class="form-control" placeholder="Mín." min="0" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">m²</span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="RangeMin" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="RangeMax" class="control-label">Rango Máx. (m²)</label>
+                        <div class="input-group">
+                            <input asp-for="RangeMax" class="form-control" placeholder="Máx." min="0" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">m²</span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="RangeMax" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="ProfessionalFee" class="control-label">Honorarios</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input asp-for="ProfessionalFee" class="form-control text-right" placeholder="0.00" />
+                            <span asp-validation-for="ProfessionalFee" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group m-3">
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+
+</form>

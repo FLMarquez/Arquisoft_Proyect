@@ -1,0 +1,111 @@
+﻿@using Cervantes.Arquisoft.Domain.Entities
+@model IEnumerable<Hub>
+
+
+<table id="myTable" class="display table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Compromiso</th>
+            <th>Fecha</th>
+            <th>Nota</th>
+            <th>Usuario</th>
+            <th>Archivo</th>
+            <th>Descripcion</th>
+            <th>Descarga</th>
+            <th>Anular</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.DueDate.HasValue)
+                    {
+                        @item.DueDate.Value.ToString("dd-MM-yyyy")
+                    }
+                    else
+                    {
+                        <span class="text-muted small">(Vacio)</span>
+                    }
+                </td>
+                <td>
+                    @if (item.HubDate != null)
+                    {
+                        @item.HubDate.ToString("dd-MM-yyyy")
+                    }
+                    else
+                    {
+                        <span class="text-muted small">(Vacio)</span>
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Note))
+                    {
+                        @item.Note
+                    }
+                    else
+                    {
+                        <span class="text-muted small">(Vacio)</span>
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.UserName))
+                    {
+                        @item.UserName
+                    }
+                    else
+                    {
+                        <span class="text-muted small">(Vacio)</span>
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.FileName))
+                    {
+                        @item.FileName
+                    }
+                    else
+                    {
+                        <span class="text-muted small">(Vacio)</span>
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.FileDescription))
+                    {
+                        @item.FileDescription
+                    }
+                    else
+                    {
+                        <span class="text-muted small">(Vacio)</span>
+                    }
+                </td>
+                <td>
+                    @if (string.IsNullOrEmpty(item.FileName))
+                    {
+                        <span class="text-muted small">(Vacio)</span>
+                    }
+                    else
+                    {
+
+                        <button class="btn btn-primary btn-download" data-hubid="@item.HubId">Descargar</button>
+                    }
+
+                </td>
+                <td>
+                    @if (!item.Note.Contains("Tarea Iniciada. Primer Compromiso"))
+                    {
+                        @if (item.IsDeleted == true)
+                        {
+                            <small class="text-muted">@item.DeletedReason</small>
+                        }
+                        else
+                        {
+                            <button class="btn btn-danger btn-delete" data-hubid="@item.HubId">X</button>
+                        }
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<div class="container">
+    <h1 class="text-center my-5">Chat Messages</h1>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="media">
+                <img class="mr-3 rounded-circle" src="https://via.placeholder.com/64x64" alt="User Avatar">
+                <div class="media-body">
+                    <h5 class="mt-0">John Doe</h5>
+                    <p>Hey, how are you doing?</p>
+                    <p>Did you hear about the new update?</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <img class="mr-3 rounded-circle" src="https://via.placeholder.com/64x64" alt="User Avatar">
+                <div class="media-body">
+                    <h5 class="mt-0">Jane Smith</h5>
+                    <p>Yeah, I saw the announcement earlier today. It looks pretty interesting.</p>
+                    <p>What do you think?</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <img class="mr-3 rounded-circle" src="https://via.placeholder.com/64x64" alt="User Avatar">
+                <div class="media-body">
+                    <h5 class="mt-0">John Doe</h5>
+                    <p>I think it's going to be a game-changer for sure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form>
+        <div class="form-group row">
+            <label for="inputMessage" class="col-sm-2 col-form-label">Message</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="inputMessage" placeholder="Type your message here...">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </form>
+</div>

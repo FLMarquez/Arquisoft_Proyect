@@ -1,0 +1,52 @@
+﻿@using Cervantes.Arquisoft.View.Models
+@model RecoverPassViewModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Recuperar Contraseña (Client)</h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-danger">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                    <form asp-action="RecoverPass">
+                        <div class="form-group">
+                            <label asp-for="DocumentNumber">DNI</label>
+                            <input asp-for="DocumentNumber" class="form-control" required>
+                            <span asp-validation-for="DocumentNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Mail">Correo electrónico</label>
+                            <input asp-for="Mail" class="form-control" required>
+                            <span asp-validation-for="Mail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Telephone">Teléfono</label>
+                            <input asp-for="Telephone" class="form-control" required>
+                            <span asp-validation-for="Telephone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Recuperar</button>
+                            <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+                    {
+                        <div class="alert alert-success">
+                            @ViewBag.SuccessMessage
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,86 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@using Cervantes.Arquisoft.View.Services
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<UserViewModel>
+@inject ICurrentUserService CurrentUserService
+
+@{
+    ViewData["Title"] = "User";
+    var currentUser = CurrentUserService.GetCurrentUser();
+
+}
+
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Listado de Usuarios</h1>
+<h5>Administrar la información de los usuarios registrados en el sistema.</h5>
+<div>
+    <a asp-action="Create" class="btn btn-primary mb-3"><i class="bi bi-plus-square"> </i>Crear Usuario</a>
+</div>
+
+<small class="text-muted">Ordenados alfabeticamente por apellido y nombre</small>
+<table id="myTable" class="table">
+    <thead>
+        <tr>
+            <th>Apellido</th>
+            <th>Nombre</th>
+            <th>DNI</th>
+            <th>Telefono</th>
+            <th>Mail</th>
+            <th>Acciones</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                
+                <td>
+                    @user.LastName
+                </td>
+                <td>
+                    @user.Name
+                </td>
+                <td>
+                    @user.DocumentNumber
+                </td>
+                <td>
+                    @user.Telephone                 
+                </td>
+                <td>
+                    @user.Mail
+                </td>
+                <td>
+                    <div class="btn-group">
+
+                    <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary"><i class="bi bi-pencil-fill"> </i> Editar</a>
+                    <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger"><i class="bi bi-trash"> </i> Eliminar</a>
+                    @if (int.TryParse(currentUser.CurrentUserRole, out int userRole) && userRole == 1)
+                    {
+                        <a asp-action="RoleChange" asp-route-id="@user.Id" class="btn btn-info">Cambiar Rol</a>
+                    }
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json"></script>
+    <script>
+        let table = $('#myTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            "columnDefs": [
+                { "orderable": false, "targets": 5 } // Deshabilita la ordenación para la primera columna (índice 0)
+            ]
+        });
+    </script>
+    
+}

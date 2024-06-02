@@ -1,0 +1,36 @@
+﻿@using Cervantes.Arquisoft.View.Models
+@model ServiceTypeViewModel
+
+@{
+    ViewData["Title"] = "Agregar un Servicio de Proyecto";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Agregar Servicios de Proyecto</h1>
+<h5>Agregar nuevas categorías</h5>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label asp-for="ServiceTypeName" class="control-label">Nombre del Servicio de Proyecto</label>
+                <input asp-for="ServiceTypeName" class="form-control" placeholder="Nombre del Servicio de Proyecto" />
+                <span asp-validation-for="ServiceTypeName" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="ServiceTypeDescription" class="control-label">Descripción</label>
+                <textarea asp-for="ServiceTypeDescription" class="form-control" style="height: 80px; resize: vertical; overflow-y: auto;" placeholder="Descripción del Servicio de Proyecto"></textarea>
+                <span asp-validation-for="ServiceTypeDescription" class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group m-3">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+    </div>
+</form>
+

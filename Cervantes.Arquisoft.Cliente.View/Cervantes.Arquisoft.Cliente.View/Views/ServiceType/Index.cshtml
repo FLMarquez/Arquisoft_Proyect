@@ -1,0 +1,52 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@model IEnumerable<ServiceTypeViewModel>
+
+@{
+    ViewData["Title"] = "Service";
+
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Servicios</h1>
+<h5>Administrar servicios y sus tareas</h5>
+
+<a asp-action="Create" class="btn btn-primary mb-3"><i class="bi bi-plus-square"> </i> Crear Servicio</a>
+
+@{
+    // Convertimos el IEnumerable<ServiceTypeViewModel> a una lista para poder indizar
+    var servicesList = Model.ToList();
+
+    // Definimos el array de direcciones de imágenes aquí
+    string[] direccionesImagenes = new string[]
+    {
+        "/img/services/conduction.png",
+        "/img/services/preproject.png",
+        "/img/services/projectandexe.png",
+        "/img/services/projectdetail.png",
+        "/img/services/projectwdetail.png"
+    };
+}
+
+<div class="container">
+    <div class="row row-cols-4">
+        @for (int i = 0; i < servicesList.Count; i++)
+        {
+            var service = servicesList[i];
+            var direccionImagen = direccionesImagenes[i % direccionesImagenes.Length];
+            <div class="col mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="@direccionImagen" alt="Imagen" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@service.ServiceTypeName</h5>
+                        <p class="card-text" style="height: 5rem; overflow: hidden; text-overflow: ellipsis;">@service.ServiceTypeDescription</p>
+                        <div class="btn-group" role="group">
+                            <a asp-action="Edit" asp-route-id="@service.Id" class="btn btn-primary"><i class="bi bi-pencil-fill"></i> Editar</a>
+                            <a asp-action="Delete" asp-route-id="@service.Id" class="btn btn-danger"><i class="bi bi-trash"></i> Eliminar</a>
+                            <a asp-controller="AssignmentType" asp-action="Index" asp-route-id="@service.Id" class="btn btn-info"><i class="bi bi-check-square-fill"></i> Tareas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Cervantes.Arquisoft.View.props" />
+</Project>

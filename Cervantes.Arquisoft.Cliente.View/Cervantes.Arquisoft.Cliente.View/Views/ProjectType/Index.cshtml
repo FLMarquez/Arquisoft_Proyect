@@ -1,0 +1,66 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@model IEnumerable<ProjectTypeViewModel>
+
+@{
+    ViewData["Title"] = "ProjectType";
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Listado de Tipologías</h1>
+<h5>Administrar las categorías o tipos de proyectos</h5>
+
+<a asp-action="Create" class="btn btn-primary mb-3"><i class="bi bi-plus-square"> </i> Crear Nueva Tipología</a>
+
+<table id="myTable" class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Rango (m²)</th>
+            <th>Honorarios ($)</th>
+            <th></th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td>@project.ProjectTypeName</td>
+                <td>@project.ProjectTypeDescription</td>
+                <td>
+                    <span class="text-success">Mín: @project.RangeMin m²</span>
+                    -
+                    <span class="text-danger">Máx: @project.RangeMax m²</span>
+                </td>
+
+                <td style="text-align: right;">$@project.ProfessionalFee.ToString("N")</td>
+                <td></td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@project.ProjectTypeId" class="btn btn-primary"><i class="bi bi-pencil-fill"> </i>Editar</a>
+                    <a asp-action="Delete" asp-route-id="@project.ProjectTypeId" class="btn btn-danger"><i class="bi bi-trash"> </i> Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json"></script>
+  
+    <script>
+        let table = $('#myTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            "columnDefs": [
+                { "orderable": false, "targets": 5 } // Deshabilita la ordenación para la primera columna (índice 0)
+            ]
+        });
+    </script>
+    }

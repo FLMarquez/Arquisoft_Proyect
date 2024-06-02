@@ -1,0 +1,650 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@using Cervantes.Arquisoft.View.Services
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model DashboardUserViewModel
+@inject ICurrentUserService CurrentUserService
+
+@{
+    ViewData["Title"] = "Dashboard";
+    var currentUser = CurrentUserService.GetCurrentUser();
+}
+
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<div class="container">
+    <h1 class="bg-primary text-light p-3">Dashboard Arquisoft</h1>
+
+    <h5>Bienvenido <strong>@currentUser.CurrentUserFirstName</strong>!</h5>
+
+     <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Rol de Usuarios Activos</h5>
+                    <div id="usertype"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cantidad de Clientes Activos</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Cliente</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cliente in Model.ClientesHistoricosPorEstado)
+                            {
+                                <tr>
+                                    <td>@cliente.ClientType</td>
+                                    <td>@cliente.Count</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Último Cliente Creado</h5>
+                    <p class="card-text">@Model.NombreUltimoCliente</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Último Usuario Creado</h5>
+                    <p class="card-text">@Model.NombreUltimoUsuario</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Último Proyecto Creado</h5>
+                    <p class="card-text">@Model.NombreUltimoProyecto</p>
+                </div>
+            </div>
+        </div>
+    </div>  
+
+     <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Porcentaje de Proyectos por Tipo</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Proyecto</th>
+                                <th>Porcentaje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var proyecto in Model.PorcentajeProyectosPorTipo)
+                            {
+                                <tr>
+                                    <td>@proyecto.Key</td>
+                                    <td>@proyecto.Value.ToString("0.00")%</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+         <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cantidad de Proyectos por Tipo</h5>
+                    <div id="percenttype"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+   <div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Cantidad de Proyectos por Tipo y Tiempo</h5>
+                <div class="align-items-center mb-3">
+                    <label for="project_time_var_startDate" class="me-2">Inicio:</label>
+                    <input type="date" id="project_time_var_startDate" class="form-control form-control-sm">
+                    <label for="project_time_var_endDate" class="mx-2">Fin:</label>
+                    <input type="date" id="project_time_var_endDate" class="form-control form-control-sm">
+                </div>
+
+                <div class="input-group mb-3">
+                    <select id="projectTypeSelect" multiple class="form-select form-select-sm ms-2" style="flex: 1;">
+                        @foreach (var projectType in Model.DataProjectTypeList)
+                        {
+                            <option value="@projectType.Type">@projectType.Type</option>
+                        }
+                    </select>
+                          <button onclick="selectAllStates()" class="btn btn-primary btn-sm ms-2">Seleccionar Todo</button>
+                    <button onclick="deselectAllStates()" class="btn btn-secondary btn-sm ms-2">Deseleccionar Todo</button>
+                </div>
+                <div>
+                    <button onclick="project_time_var_updateChart()" class="btn btn-primary btn-sm ms-2">Actualizar</button>
+                    <button onclick="toggleChartType_project_type()" class="btn btn-secondary btn-sm ms-2">Alternar</button>
+                </div>
+            </div>
+            <canvas id="chart_project"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Estado de Proyectos por Intervalo de Tiempo</h5>
+                <div class="align-items-center mb-3">
+                <label for="chart_pstate_startDate">Inicio:</label>
+                <input type="date" id="chart_pstate_startDate" class="form-control form-control-sm">
+                <label for="chart_pstate_endDate">Fin:</label>
+                <input type="date" id="chart_pstate_endDate" class="form-control form-control-sm">
+                </div>
+                <div class="input-group mb-3">
+                <select id="projectStateSelect" multiple class="form-select form-select-sm ms-2" style="flex: 1;">
+                        @foreach (var projectState in Model.DataProjectStateList)
+                        { 
+                            <option value="@projectState.Status">@projectState.Status</option>
+                        }
+                    </select>
+              
+                    <button onclick="selectAllTypes()" class="btn btn-primary btn-sm ms-2">Seleccionar Todo</button>
+                    <button onclick="deselectAllTypes()" class="btn btn-secondary btn-sm ms-2">Deseleccionar Todo</button>
+                 </div>
+                 <div>
+                    <button onclick="project_state_var_updateChart()" class="btn btn-primary btn-sm ms-2">Actualizar</button>
+                    <button onclick="toggleChartType_project_state()" class="btn btn-secondary btn-sm ms-2">Alternar</button>
+                
+                </div>
+                <canvas id="chart_pstate"></canvas>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+  <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cobro por Intervalo de Tiempo</h5>
+                    <div class="align-items-center mb-3">
+                        <label for="amount_time_var_startDate" class="me-2">Inicio:</label>
+                        <input type="date" id="amount_time_var_startDate" class="form-control form-control-sm">
+                        <label for="amount_time_var_endDate" class="mx-2">Fin:</label>
+                        <input type="date" id="amount_time_var_endDate" class="form-control form-control-sm">
+                        </div>
+                        <div>
+                        <button onclick="amount_time_var_updateChart()" class="btn btn-primary btn-sm ms-2">Actualizar</button>
+                        <button onclick="toggleChartType_amount_time()" class="btn btn-secondary btn-sm ms-2">Alternar</button>
+                    </div>
+                </div>
+                <canvas id="chart_amount"></canvas>
+            </div>
+        </div>
+         <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Porcentaje y Montos de Metodos de Pago</h5>
+                    <div id="dataAmountMethod"></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+        
+
+
+
+            @section Scripts {
+                <script src="https://cdn.anychart.com/releases/8.12.0/js/anychart-base.min.js"></script>
+                <script src="https://cdn.anychart.com/releases/8.12.0/js/anychart-pie.min.js"></script>
+                <script src="https://cdn.anychart.com/releases/8.12.0/js/anychart-core.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <script>
+                    let modifiedData;
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const jsonDataPercentProject = @Html.Raw(Json.Serialize(Model.ProyectosPorTipo));
+                        modifiedData = jsonDataPercentProject.map(element => ({
+                            x: element.projectType,
+                            value: element.count
+                        }));
+                    });
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const chart = anychart.pie(modifiedData);
+                        chart.innerRadius("30%");
+                        chart.container("percenttype");
+                        chart.draw();
+                    });
+
+                    let userPercentData;
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const jsonDataPercentProject = @Html.Raw(Json.Serialize(Model.UsuariosHistoricosPorEstado));
+                        userPercentData = jsonDataPercentProject.map(element => ({
+                            x: element.userType,
+                            value: element.count
+                        }));
+                    });
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const chart = anychart.pie(userPercentData);
+                        chart.innerRadius("30%");
+                        chart.container("usertype");
+                        chart.draw();
+                    });
+                
+                    let dataAmount_Method;
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const jsonDataPercentProject = @Html.Raw(Json.Serialize(Model.Amount_MethodList));
+
+                        const totalAmount = jsonDataPercentProject.reduce((total, current) => total + current.amount, 0);
+
+                        dataAmount_Method = jsonDataPercentProject.map(element => ({
+                            x: element.methodName,
+                            value: element.amount
+                        }));
+
+                        const chart = anychart.pie(dataAmount_Method);
+                        chart.innerRadius("30%");
+                        chart.container("dataAmountMethod");
+                        chart.draw();
+                    });
+
+                </script> 
+                 <script>
+                       let amount_time_var_chart; 
+                       let chartType_amount_time = 'line'; // Tipo de gráfico predeterminado
+
+            
+            function amount_time_var_updateChart() {
+            const chart_amount = document.getElementById('chart_amount');
+            const jsonDataAmountTime = JSON.parse('@Html.Raw(Json.Serialize(Model.Amount_TimeList))');
+
+            console.log('Montos');
+            console.log(jsonDataAmountTime);
+
+               const startDate = document.getElementById('amount_time_var_startDate').value;
+            const endDate = document.getElementById('amount_time_var_endDate').value;
+
+            // Filtrar datos por fecha
+            const filteredData = jsonDataAmountTime.filter(item => {
+                const itemDate = new Date(item.date);
+                return (!startDate || itemDate >= new Date(startDate)) && (!endDate || itemDate <= new Date(endDate));
+            });
+
+            // Ordenar datos por fecha
+            filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            // Reducir datos sumando los montos por fecha
+            const groupedData = filteredData.reduce((acc, curr) => {
+                const date = curr.date.split('T')[0];
+                if (acc[date]) {
+                    acc[date] += curr.amount;
+                } else {
+                    acc[date] = curr.amount;
+                }
+                return acc;
+            }, {});
+
+            const labels = Object.keys(groupedData);
+            const amounts = Object.values(groupedData);
+
+            const ctx = document.getElementById('chart_amount').getContext('2d');
+
+            // Destruir el gráfico existente si existe
+            if (amount_time_var_chart) {
+                amount_time_var_chart.destroy();
+            }
+
+            // Crear un nuevo gráfico
+            amount_time_var_chart = new Chart(ctx, {
+                type: chartType_amount_time, // Usar el tipo de gráfico seleccionado
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Cantidades',
+                        data: amounts,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Función para alternar entre gráfico de barras y gráfico de líneas
+        function toggleChartType_amount_time() {
+            if (chartType_amount_time === 'bar') {
+                chartType_amount_time = 'line'; // Cambiar a gráfico de líneas
+            } else {
+                chartType_amount_time = 'bar'; // Cambiar a gráfico de barras
+            }
+            amount_time_var_updateChart(); // Actualizar el gráfico con el nuevo tipo
+        }
+
+
+    </script>
+                                  
+
+                
+                     
+<script>
+    const chart_ptype = document.getElementById('chart_ptype');
+    const jsonDataType = @Html.Raw(Json.Serialize(Model.DataProjectTypeList));
+    let project_time_var_chart;
+    let chartType_project_time = 'bar'; // Tipo de gráfico predeterminado
+    let filteredData; // Variable para almacenar los datos filtrados
+
+    function project_time_var_updateChart() {
+
+      
+        const selectedTypes = getSelectedTypes(); // Obtener los tipos seleccionados por el usuario
+
+        // Filtrar los datos por los tipos seleccionados
+        filteredData = jsonDataType.filter(item => selectedTypes.includes(item.type));
+        console.log('Tipos')
+        console.log(jsonDataType);
+
+        const startDate = document.getElementById('project_time_var_startDate').value;
+        const endDate = document.getElementById('project_time_var_endDate').value;
+
+        // Filtrar datos por fecha si hay filtros aplicados
+        if (startDate || endDate) {
+            filteredData = filteredData.filter(item => {
+                const itemDate = new Date(item.date);
+                return (!startDate || itemDate >= new Date(startDate)) && (!endDate || itemDate <= new Date(endDate));
+            });
+        }
+
+        // Ordenar datos por fecha
+        filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        // Reducir datos agrupando por tipo de proyecto
+        const groupedData = filteredData.reduce((acc, curr) => {
+            const type = curr.type;
+            if (acc[type]) {
+                acc[type]++;
+            } else {
+                acc[type] = 1;
+            }
+            return acc;
+        }, {});
+
+        const labels = Object.keys(groupedData).map(label => label.replace('Local Comercial - ', ''));
+        const counts = Object.values(groupedData);
+
+        const ctx = document.getElementById('chart_project').getContext('2d');
+
+        // Destruir el gráfico existente si existe
+        if (project_time_var_chart) {
+            project_time_var_chart.destroy();
+        }
+
+        const colors = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 0, 255, 0.2)'];
+
+        // Crear un nuevo gráfico
+        project_time_var_chart = new Chart(ctx, {
+            type: chartType_project_time, // Usar el tipo de gráfico seleccionado
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Tipos de Proyectos',
+                    data: counts,
+                    backgroundColor: colors,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Función para alternar entre gráfico de barras y gráfico de líneas
+    function toggleChartType_project_type() {
+        if (chartType_project_time === 'bar') {
+            chartType_project_time = 'line'; // Cambiar a gráfico de líneas
+        } else {
+            chartType_project_time = 'bar'; // Cambiar a gráfico de barras
+        }
+        project_time_var_updateChart(); // Actualizar el gráfico con el nuevo tipo
+    }
+
+       
+
+    function getSelectedTypes() {
+        // Obtener los tipos seleccionados del elemento select
+        const selectElement_type = document.getElementById('projectTypeSelect');
+        const selectedOptions = Array.from(selectElement_type.selectedOptions).map(option => option.value);
+        return selectedOptions;
+    }
+
+            function selectAllStates() {
+            const selectElement_type = document.getElementById('projectTypeSelect');
+            Array.from(selectElement_type.options).forEach(option => option.selected = true);
+        }
+
+        function deselectAllStates() {
+            const selectElement_type = document.getElementById('projectTypeSelect');
+            Array.from(selectElement_type.options).forEach(option => option.selected = false);
+        }
+</script>
+
+
+
+
+
+
+             <script>
+    const chartElement = document.getElementById('chart_pstate');
+    const jsonDataState = @Html.Raw(Json.Serialize(Model.DataProjectStateList));
+    console.log('Estados')
+    console.log(jsonDataState)
+
+    let project_state_var_chart;
+    let chartType_project_state = 'bar'; // Tipo de gráfico predeterminado
+    let filteredData_state; // Variable para almacenar los datos filtrados
+
+    function project_state_var_updateChart() {
+    const startDate = document.getElementById('chart_pstate_startDate').value;
+    const endDate = document.getElementById('chart_pstate_endDate').value;
+
+    // Obtener los estados seleccionados por el usuario
+    const selectedStates = getSelectedStates();
+
+    // Filtrar los datos por los estados seleccionados
+    filteredData_state = jsonDataState.filter(item => selectedStates.includes(item.status));
+
+    // Filtrar datos por fecha si hay filtros aplicados
+    if (startDate || endDate) {
+        filteredData_state = filteredData_state.filter(item => {
+            const itemDate = new Date(item.date);
+            return (!startDate || itemDate >= new Date(startDate)) && (!endDate || itemDate <= new Date(endDate));
+        });
+    }
+
+    // Reducir datos agrupando por estado de proyecto
+    let groupedData = {};
+
+    // Reducir datos agrupando por estado de proyecto
+    filteredData_state.forEach(item => {
+        const status = item.status;
+        if (groupedData[status]) {
+            groupedData[status]++;
+        } else {
+            groupedData[status] = 1;
+        }
+    });
+
+    // Convertir el objeto en un array de objetos
+    groupedData = Object.keys(groupedData).map(key => ({ status: key, count: groupedData[key] }));
+
+    const labels = groupedData.map(item => item.status);
+    const counts = groupedData.map(item => item.count);
+
+    const ctx = document.getElementById('chart_pstate').getContext('2d');
+
+    // Destruir el gráfico existente si existe
+    if (project_state_var_chart) {
+        project_state_var_chart.destroy();
+    }
+
+    const colors = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 0, 255, 0.2)'];
+
+    // Crear un nuevo gráfico
+    project_state_var_chart = new Chart(ctx, {
+        type: chartType_project_state, // Usar el tipo de gráfico seleccionado
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Estado de Proyectos',
+                data: counts,
+                backgroundColor: colors,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 3
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+
+    // Función para obtener el orden del estado
+    function getStatusOrder(status) {
+        switch (status) {
+            case 'Iniciado':
+                return 1;
+            case 'Activo':
+                return 2;
+            case 'Completo':
+                return 3;
+            case 'Inactivo':
+                return 4;
+            default:
+                return 0;
+        }
+    }
+
+    // Función para alternar entre gráfico de barras y gráfico de líneas
+    function toggleChartType_project_state() {
+        if (chartType_project_state === 'bar') {
+            chartType_project_state = 'line'; // Cambiar a gráfico de líneas
+        } else {
+            chartType_project_state = 'bar'; // Cambiar a gráfico de barras
+        }
+        project_state_var_updateChart(); // Actualizar el gráfico con el nuevo tipo
+    }
+
+  
+
+    function getSelectedStates() {
+        // Obtener los estados seleccionados del elemento select
+        const selectElement = document.getElementById('projectStateSelect');
+        const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+        return selectedOptions;
+    }
+
+    function selectAllTypes() {
+        const selectElement = document.getElementById('projectStateSelect');
+        Array.from(selectElement.options).forEach(option => option.selected = true);
+    }
+
+    function deselectAllTypes() {
+        const selectElement = document.getElementById('projectStateSelect');
+        Array.from(selectElement.options).forEach(option => option.selected = false);
+    }
+
+    function initializePage() {
+  // Función del primer window.onload
+  const selectElement_type = document.getElementById('projectTypeSelect');
+  const uniqueTypes = new Set();
+
+  // Obtener tipos únicos de proyectos
+  jsonDataType.forEach(item => uniqueTypes.add(item.type));
+
+  // Limpiar el elemento select antes de agregar nuevas opciones
+  selectElement_type.innerHTML = '';
+
+  // Agregar las opciones al elemento select
+  uniqueTypes.forEach(type => {
+    const option2 = document.createElement('option');
+    option2.text = type;
+    option2.value = type;
+    option2.selected = true; // Marcar como seleccionado
+    console.log('aqui')
+    selectElement_type.appendChild(option2);
+  });
+  filteredData = jsonDataType;
+  project_time_var_updateChart(); // Llamar a la función de actualización del gráfico
+
+  // Función del segundo window.onload
+  const selectElement = document.getElementById('projectStateSelect');
+  const uniqueStates = new Set(); // Conjunto para almacenar estados únicos
+
+  // Obtener estados únicos de proyectos
+  jsonDataState.forEach(item => uniqueStates.add(item.status));
+
+  // Limpiar el elemento select antes de agregar nuevas opciones
+  selectElement.innerHTML = '';
+
+  // Agregar las opciones al elemento select
+  uniqueStates.forEach(state => {
+    const option = document.createElement('option');
+    option.text = state;
+    option.value = state;
+    option.selected = true; // Seleccionar todas las opciones al crearlas
+    selectElement.appendChild(option);
+  });
+
+  // Actualizar el gráfico una vez que se han agregado las opciones
+  project_state_var_updateChart();
+
+  // Función del tercer window.onload
+  amount_time_var_updateChart();
+}
+
+document.addEventListener('DOMContentLoaded', initializePage);
+
+</script>
+
+            }

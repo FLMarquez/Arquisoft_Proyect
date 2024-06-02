@@ -1,0 +1,150 @@
+﻿@using Cervantes.Arquisoft.View.Models;
+@using Cervantes.Arquisoft.View.Services
+@model CreateUserViewModel
+@inject ICurrentUserService CurrentUserService
+@{
+    ViewData["Title"] = "Agregar Usuario";
+    var currentUser = CurrentUserService.GetCurrentUser();
+
+}
+<partial name="~/Views/Shared/Partials/_NavbarUser.cshtml" />
+
+<h1>Agregar un Usuario</h1>
+<h5>Registrar nuevo usuario</h5>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-6">
+
+
+            <div class="form-group">
+                <label asp-for="DocumentNumber" class="control-label">Documento Nacional</label>
+                <input asp-for="DocumentNumber" class="form-control" placeholder="Ingrese el dni" onchange="checkDocumentExistence()" />
+                <span asp-validation-for="DocumentNumber" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nombre del Usuario</label>
+                <input asp-for="Name" class="form-control" placeholder="Ingrese el nombre" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">Apellido del Usuario</label>
+                <input asp-for="LastName" class="form-control" placeholder="Ingrese el apellido" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Contraseña</label>
+                <input asp-for="Password" class="form-control" placeholder="Ingrese la Contraseña" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="Mail" class="control-label">Mail</label>
+                <input asp-for="Mail" class="form-control" placeholder="Ingrese el correo electrónico" />
+                <span asp-validation-for="Mail" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label">Teléfono</label>
+                <input asp-for="Telephone" class="form-control" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Ingrese el teléfono" />
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+            </div>
+
+        @if (int.TryParse(currentUser.CurrentUserRole, out int userRole) && userRole == 1)
+        {
+            <div class="form-group">
+                <label asp-for="UserRoleId" class="control-label">Rol del Usuario</label>
+                <select asp-for="UserRoleId" asp-items="Model.UserRoleList.Where(x => x.Value != 1.ToString())" class="form-control"></select>
+                <span asp-validation-for="UserRoleId" class="text-danger"></span>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="UserRoleId" class="control-label">Rol del Usuario</label>
+                    <select asp-for="UserRoleId" asp-items='Model.UserRoleList.Where(x => x.Value == "5") ' class="form-control"></select>
+                <span asp-validation-for="UserRoleId" class="text-danger"></span>
+            </div>
+        }
+        </div>  
+
+    </div>
+
+   @* <div class="mb-3">
+        <label for="Fecha y Hora del Ultimo Ingreso" class="form-label">Fecha y Hora del Ultimo Ingreso</label>
+        <input type="datetime" class="form-control" asp-for="Date_time_last" placeholder="Fecha y Hora del Ultimo Ingreso">
+        <span asp-validation-for="Date_time_last" class="text-danger"></span>
+
+    </div>*@
+
+    
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a asp-action="List" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+
+<script>
+    // Función para desactivar o habilitar los campos de entrada
+    function toggleInputFields(disabled) {
+        var inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], select');
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].id !== "DocumentNumber") { // Excluir el campo de entrada del DNI
+                inputs[i].disabled = disabled;
+            }
+        }
+        console.log('Campos de entrada desactivados:', disabled);
+    }
+
+    // Función para manejar la respuesta de la verificación de existencia del documento
+    function handleExistenceCheckResponse(response) {
+        console.log('Respuesta de verificación de existencia del documento:', response);
+        if (response === true) {
+            toggleInputFields(false); // Habilitar los campos de entrada
+        } else {
+            toggleInputFields(true); // Desactivar los campos de entrada
+        }
+    }
+
+    // Función para verificar la existencia del documento
+    function checkDocumentExistence() {
+        var documentNumber = document.getElementById("DocumentNumber").value;
+        console.log('Número de documento:', documentNumber);
+        if (documentNumber === "0") {
+            toggleInputFields(true); // Desactivar los campos de entrada si el valor es 0
+        } else {
+            fetch(`/User/AlreadyExistCheck?documentNumber=${documentNumber}`)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    handleExistenceCheckResponse(data);
+                })
+                .catch(function (error) {
+                    console.error('Error al realizar la verificación de existencia del documento:', error);
+                });
+        }
+    }
+
+    // Llamada inicial a la función de verificación de existencia del documento
+    checkDocumentExistence();
+</script>
+
+
+}
+
+
